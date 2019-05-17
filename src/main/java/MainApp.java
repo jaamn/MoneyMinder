@@ -14,7 +14,7 @@ public class MainApp extends Application {
         Platform.setImplicitExit(false);
         this.primaryStage = stage;
         this.primaryStage.setTitle("MoneyMinder");
-        //this.primaryStage.setResizable(false);
+        this.primaryStage.setResizable(false);
         initializeScene();
     }
 
