@@ -8,13 +8,13 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
    <children>
-      <Button id="loginButton" fx:id="loginButton" layoutX="201.0" layoutY="261.0" mnemonicParsing="false" text="Login" />
+      <Button fx:id="loginButton" layoutX="201.0" layoutY="261.0" mnemonicParsing="false" text="Login" />
       <Label layoutX="242.0" layoutY="55.0" text="MoneyMinder">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField id="usernameField" fx:id="usernameField" layoutX="86.0" layoutY="141.0" />
+      <TextField fx:id="usernameField" layoutX="86.0" layoutY="141.0" />
       <Label layoutX="87.0" layoutY="124.0" text="Username" />
       <Label layoutX="87.0" layoutY="183.0" text="Password" />
       <ImageView fitHeight="179.0" fitWidth="224.0" layoutX="284.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
@@ -22,7 +22,7 @@
             <Image url="@../Logo.png" />
          </image>
       </ImageView>
-      <Button id="registerButton" fx:id="registerButton" layoutX="184.0" layoutY="306.0" mnemonicParsing="false" text="Register" />
-      <PasswordField id="passwordField" fx:id="passwordField" layoutX="86.0" layoutY="200.0" />
+      <Button fx:id="registerButton" layoutX="184.0" layoutY="306.0" mnemonicParsing="false" text="Register" />
+      <PasswordField fx:id="passwordField" layoutX="86.0" layoutY="200.0" />
    </children>
 </Pane>
