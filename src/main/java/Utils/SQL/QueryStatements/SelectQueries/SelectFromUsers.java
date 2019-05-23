@@ -14,8 +14,6 @@ public class SelectFromUsers implements SelectQuery {
     public ResultSet execute(Object o)
     {
         UserPassPair user = (UserPassPair) o;
-        String username = user.getUsername();
-        String password = user.getPassword();
         ResultSet rs = null;
         try
         {
