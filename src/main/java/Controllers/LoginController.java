@@ -44,7 +44,7 @@ public class LoginController {
         });
 
         registerButton.setOnAction( event -> {
-            ((Node)(event.getSource())).getScene().getWindow().hide();
+//            ((Node)(event.getSource())).getScene().getWindow().hide();
             switchToRegisterScene();
         });
 
