@@ -42,7 +42,7 @@ public class RegisterController {
                 if (user.registerUser())
                 {
                     // what if we want to go back to login page?
-                    ((Node) (event.getSource())).getScene().getWindow().hide();
+//                    ((Node) (event.getSource())).getScene().getWindow().hide();
                     switchToLoginScene();
                 }
                 else
