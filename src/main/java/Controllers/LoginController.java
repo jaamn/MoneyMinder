@@ -1,9 +1,12 @@
 package Controllers;
 
+import Models.Category;
+import Models.User;
 import Utils.SwitchScene;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -28,13 +31,15 @@ public class LoginController {
     public void initialize(){
 
         loginButton.setOnAction( event -> {
-            if (verifyUser(usernameField.getText(), passwordField.getText()))
+            User user = verifyUser(usernameField.getText(), passwordField.getText());
+            if (user != null)
             {
                 switchToMainMenu();
             }
             else
             {
-                // TODO report error
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error\n");
+                alert.showAndWait();
             }
         });
 
