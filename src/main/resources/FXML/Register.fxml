@@ -8,7 +8,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegisterController">
    <children>
-      <ImageView fitHeight="179.0" fitWidth="224.0" layoutX="294.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="179.0" fitWidth="224.0" layoutX="362.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Logo.png" />
          </image>
@@ -21,11 +21,15 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="registerButton" layoutX="194.0" layoutY="330.0" mnemonicParsing="false" text="Register" />
+      <Button fx:id="registerButton" layoutX="311.0" layoutY="335.0" mnemonicParsing="false" text="Register" />
       <TextField fx:id="firstnameField" layoutX="96.0" layoutY="99.0" />
       <TextField fx:id="lastnameField" layoutX="96.0" layoutY="158.0" />
       <Label layoutX="96.0" layoutY="82.0" text="First Name" />
       <Label layoutX="96.0" layoutY="141.0" text="Last Name" />
       <PasswordField fx:id="passwordField" layoutX="96.0" layoutY="273.0" />
+      <Text layoutX="96.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You can use letters, numbers, &amp; periods" />
+      <Text layoutX="97.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Use 8 or more characters with a mix of letters, numbers, &amp; symbols" wrappingWidth="299.18359375" />
+      <Label layoutX="242.0" layoutY="257.0" text="Confirm" />
+      <PasswordField layoutX="242.0" layoutY="273.0" />
    </children>
 </Pane>

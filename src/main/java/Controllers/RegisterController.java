@@ -41,6 +41,7 @@ public class RegisterController {
                 User user = new User(usernameField.getText(), firstnameField.getText(), lastnameField.getText(), passwordField.getText());
                 if (user.registerUser())
                 {
+                    // what if we want to go back to login page?
                     ((Node) (event.getSource())).getScene().getWindow().hide();
                     switchToLoginScene();
                 }
