@@ -1,4 +1,7 @@
 
+import Models.Tables;
+import Utils.SQL.QueryFactory.CreateTableQueryFactory;
+import Utils.SQL.QueryStatements.CreateTableQueries.*;
 import Utils.SwitchScene;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -11,6 +14,9 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) {
+
+        createTables();
+
         Platform.setImplicitExit(false);
         this.primaryStage = stage;
         this.primaryStage.setTitle("MoneyMinder");
@@ -22,6 +28,15 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getClassLoader().getResource("FXML/Login.fxml"));
             SwitchScene.switchScene(loader, "Login");
+    }
+
+    private void createTables()
+    {
+        CreateTableQuery query = CreateTableQueryFactory.getQuery(Tables.Categories);
+        query.execute();
+
+        query = CreateTableQueryFactory.getQuery(Tables.Users);
+        query.execute();
     }
 }
 
