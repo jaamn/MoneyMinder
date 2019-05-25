@@ -9,8 +9,8 @@ public class Store {
 
     public static String fieldsForTableCreation()
     {
-        StringJoiner sj = new StringJoiner(",\n");
-        sj.add("sid INTEGER PRIMARY KEY");
+        StringJoiner sj = new StringJoiner(",\n\t");
+        sj.add("\tsid INTEGER PRIMARY KEY");
         sj.add("name TEXT");
 
         return sj.toString();
