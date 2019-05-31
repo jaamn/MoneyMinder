@@ -1,6 +1,5 @@
 package Controllers;
 
-import Models.Category;
 import Models.User;
 import Utils.SwitchScene;
 import javafx.fxml.FXML;
@@ -27,14 +26,16 @@ public class LoginController {
     @FXML
     private Button registerButton;
 
+    User user = null;
+
     @FXML
     public void initialize(){
 
         loginButton.setOnAction( event -> {
-            User user = verifyUser(usernameField.getText(), passwordField.getText());
+            user = verifyUser(usernameField.getText(), passwordField.getText());
             if (user != null)
             {
-                switchToMainMenu();
+                switchToMainMenu(user);
             }
             else
             {
@@ -53,12 +54,14 @@ public class LoginController {
     private void switchToRegisterScene() {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("FXML/Register.fxml"));
-        SwitchScene.switchScene(loader, "Register");
+        SwitchScene.switchScene(loader,"Register");
     }
 
-    private void switchToMainMenu() {
+    private void switchToMainMenu(User user) {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("FXML/MainMenu.fxml"));
+        MainMenuController controller = new MainMenuController(user);
+        loader.setController(controller);
         SwitchScene.switchScene(loader, "Main Menu");
     }
 
