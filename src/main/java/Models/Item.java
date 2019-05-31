@@ -11,8 +11,8 @@ public class Item {
 
     public static String fieldsForTableCreation()
     {
-        StringJoiner sj = new StringJoiner(",\n");
-        sj.add("iid INTEGER PRIMARY KEY");
+        StringJoiner sj = new StringJoiner(",\n\t");
+        sj.add("\tiid INTEGER PRIMARY KEY");
         sj.add("rid INTEGER");
         sj.add("cid INTEGER");
         sj.add("quantity INTEGER");

@@ -66,11 +66,11 @@ public class User {
 
     public static String fieldsForTableCreation()
     {
-        StringJoiner sj = new StringJoiner(",\n");
+        StringJoiner sj = new StringJoiner(",\n\t");
         sj.add("\tusername TEXT PRIMARY KEY");
-        sj.add("\tfirstname TEXT");
-        sj.add("\tlastname TEXT");
-        sj.add("\tpassword TEXT");
+        sj.add("firstname TEXT");
+        sj.add("lastname TEXT");
+        sj.add("password TEXT");
 
         return sj.toString();
     }

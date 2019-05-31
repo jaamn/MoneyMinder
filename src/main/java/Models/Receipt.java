@@ -12,8 +12,8 @@ public class Receipt {
 
     public static String fieldsForTableCreation()
     {
-        StringJoiner sj = new StringJoiner(",\n");
-        sj.add("rid INTEGER PRIMARY KEY");
+        StringJoiner sj = new StringJoiner(",\n\t");
+        sj.add("\trid INTEGER PRIMARY KEY");
         sj.add("sid INTEGER");
         sj.add("username STRING");
         sj.add("date DATE");

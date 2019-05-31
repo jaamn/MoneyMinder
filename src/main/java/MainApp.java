@@ -8,6 +8,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
+import java.util.EnumSet;
+
 public class MainApp extends Application {
 
     private Stage primaryStage;
@@ -32,11 +34,10 @@ public class MainApp extends Application {
 
     private void createTables()
     {
-        CreateTableQuery query = CreateTableQueryFactory.getQuery(Tables.Categories);
-        query.execute();
-
-        query = CreateTableQueryFactory.getQuery(Tables.Users);
-        query.execute();
+        for (Tables t : Tables.values()) {
+            CreateTableQuery query = CreateTableQueryFactory.getQuery(t);
+            query.execute();
+        }
     }
 }
 

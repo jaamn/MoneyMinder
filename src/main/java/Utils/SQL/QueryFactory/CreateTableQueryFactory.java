@@ -10,7 +10,6 @@ public class CreateTableQueryFactory {
         {
             return new CreateCategoriesTable();
         }
-        /*
         if (name.equals(Tables.Items))
         {
             return new CreateItemsTable();
@@ -23,7 +22,6 @@ public class CreateTableQueryFactory {
         {
             return new CreateStoresTable();
         }
-        */
         if (name.equals(Tables.Users))
         {
             return new CreateUsersTable();
