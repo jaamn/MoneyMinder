@@ -25,6 +25,11 @@ public class User {
         this.password = password;
     }
 
+    public String getFirstName()
+    {
+        return this.firstname;
+    }
+
     public static User verifyUser(String username, String password)
     {
         SelectQuery query = SelectQueryFactory.getQuery(Tables.Users);
