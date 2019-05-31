@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<Pane fx:id="viewAnalytics" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="viewAnalytics" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AnalyticsFilterController">
    <children>
       <Button fx:id="pieChart" layoutX="258.0" layoutY="146.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="94.0" text="Pie Chart" />
       <Button fx:id="lineGraph" layoutX="258.0" layoutY="216.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="94.0" text="Line Graph" />
