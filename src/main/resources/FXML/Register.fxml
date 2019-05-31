@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
@@ -23,6 +21,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <Button fx:id="registerButton" layoutX="311.0" layoutY="335.0" mnemonicParsing="false" text="Register" />
       <TextField fx:id="firstnameField" layoutX="96.0" layoutY="99.0" />
       <TextField fx:id="lastnameField" layoutX="96.0" layoutY="158.0" />
       <Label layoutX="96.0" layoutY="82.0" text="First Name" />
