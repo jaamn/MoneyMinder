@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="enterNewReceipt" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="enterText" layoutX="243.0" layoutY="72.0" text="Enter New Receipt" />
+      <Label fx:id="category" layoutX="69.0" layoutY="109.0" text="Select or enter category" />
+      <Label fx:id="enterID" layoutX="309.0" layoutY="149.0" text="Enter receipt id" />
+      <Label fx:id="enterDate" layoutX="311.0" layoutY="211.0" text="Enter date" />
+      <Label fx:id="enterStore" layoutX="309.0" layoutY="272.0" text="Enter store" />
+      <TableView fx:id="categoryTable" layoutX="43.0" layoutY="149.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="itemCategory" prefWidth="118.0" text="Item Category" />
+          <TableColumn fx:id="quantity" prefWidth="81.0" text="Quantity" />
+        </columns>
+      </TableView>
+      <TextField fx:id="recieptField" layoutX="309.0" layoutY="173.0" />
+      <TextField fx:id="dateField" layoutX="309.0" layoutY="236.0" />
+      <TextField fx:id="storeField" layoutX="309.0" layoutY="306.0" />
+   </children>
+</Pane>

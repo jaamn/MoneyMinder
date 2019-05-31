@@ -10,12 +10,11 @@ import java.io.IOException;
 public class SwitchScene {
 
     public static void switchScene(FXMLLoader loader, String title) {
-
         Stage stage = new Stage();
         stage.setTitle(title);
         Pane layout = null;
         try {
-            layout = loader.load();
+            layout = (Pane) loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }

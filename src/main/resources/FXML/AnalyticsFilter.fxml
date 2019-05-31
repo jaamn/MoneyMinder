@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-
 
 <Pane fx:id="viewAnalytics" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -11,6 +11,6 @@
       <Button fx:id="lineGraph" layoutX="258.0" layoutY="216.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="94.0" text="Line Graph" />
       <Button fx:id="metrics" layoutX="258.0" layoutY="285.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="94.0" text="Metrics" />
       <Label fx:id="viewText" layoutX="261.0" layoutY="44.0" text="View Analytics" />
-      <Label fx:id="promptText" layoutX="129.0" layoutY="91.0" text="Choose the form you would like to view your spending data " />
+      <Label fx:id="choosePrompt" layoutX="168.0" layoutY="88.0" text="Choose how you would like to see your spending" />
    </children>
 </Pane>
