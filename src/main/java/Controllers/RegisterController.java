@@ -52,7 +52,6 @@ public class RegisterController {
                 }
             }
         });
-
     }
 
     private void switchToLoginScene() {
