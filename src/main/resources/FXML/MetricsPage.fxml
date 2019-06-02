@@ -7,6 +7,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="186.0" layoutY="74.0" text="Running total of expenses this month" />
-      <ProgressBar fx:id="progress" layoutX="200.0" layoutY="136.0" prefWidth="200.0" progress="0.0" />
+      <ProgressBar fx:id="progressBar" layoutX="200.0" layoutY="136.0" prefWidth="200.0" progress="0.0" />
+      <ProgressIndicator fx:id="progressIndicator" layoutX="416.0" layoutY="126.0" progress="0.0" />
    </children>
 </Pane>
