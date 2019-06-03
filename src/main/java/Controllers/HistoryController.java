@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.Category;
 import Models.Item;
 import Models.User;
 import javafx.collections.FXCollections;
@@ -50,9 +51,7 @@ public class HistoryController {
         itemRid.setCellValueFactory(cellData -> cellData.getValue().ridProperty());
 
         itemTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
         items = Item.getItemsForUser(user);
-
         itemTable.setItems(items);
     }
 

@@ -13,6 +13,11 @@ import java.util.StringJoiner;
 
 public class SelectFromCategories implements SelectQuery {
 
+    public ResultSet execute(Object c, Object o)
+    {
+        return null;
+    }
+
     public ResultSet execute(Object o)
     {
         Integer cid = (Integer) o;

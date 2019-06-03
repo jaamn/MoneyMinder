@@ -161,4 +161,24 @@ public class Item {
         prop.setValue(Float.toString(this.rid));
         return prop;
     }
+
+    public static float getSumPriceForCategory(User user, Category c)
+    {
+        SelectQuery query = SelectQueryFactory.getQuery(Tables.Items);
+        try (ResultSet rs = query.execute(c, user))
+        {
+            if (rs.next())
+            {
+                float sum = rs.getFloat("sumPrice");
+                return sum;
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return 0;
+    }
+
 }

@@ -42,7 +42,7 @@ public class PieChartController {
 
     @FXML
     public void initialize(){
-//        loadData();
+        loadData();
         loadDemoData();
         pieChart.setData(piechartdata);
 
@@ -71,9 +71,25 @@ public class PieChartController {
     private void loadData(){
 
         // TODO
-        // These below will return ObservableArrayLists of the Categories and of the user's items
+        // Item.getSumPriceForCategory(user, c);
+        // will return a sum of the prices of all items in the Category c for the User user
+
+        //EXAMPLE:
+        for (Category c : Category.getCategories())
+        {
+            float total = Item.getSumPriceForCategory(user, c);
+            System.err.println(c.getName() + ": " + total);
+        }
+
         // Categories: Category.getCategories();
+        // will return a list of all categories in the database
+
         // Items: Item.getItemsForUser(user);
+        // will return a list of all items for a User user
+
+
+        /*
+        USE SQL FACTORIES OR STATIC METHODS IN MODEL CLASSES
 
         Connection connection;
         piechartdata = FXCollections.observableArrayList();
@@ -89,6 +105,7 @@ public class PieChartController {
         } catch (SQLException ex){
             JOptionPane.showMessageDialog(null, ex);
         }
+        */
     }
 
     private void loadDemoData(){

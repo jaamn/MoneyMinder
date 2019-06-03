@@ -11,6 +11,11 @@ import java.util.StringJoiner;
 
 public class SelectFromUsers implements SelectQuery {
 
+    public ResultSet execute(Object c, Object o)
+    {
+        return null;
+    }
+
     public ResultSet execute(Object o)
     {
         UserPassPair user = (UserPassPair) o;

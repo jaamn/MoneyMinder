@@ -55,7 +55,6 @@ public class Category {
             {
                 String name = rs.getString("name");
                 String cid = rs.getString("cid");
-                System.out.println("cid: " + cid + " name: " + name);
                 categories.add(new Category(Integer.parseInt(cid), name));
             }
         }
