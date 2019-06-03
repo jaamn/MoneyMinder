@@ -63,4 +63,23 @@ public class Receipt {
         }
         return 0;
     }
+
+    public static float getSpendingPerCategoryForMonth(User user, Category c, String month, String year)
+    {
+        SelectQuery query = SelectQueryFactory.getQuery(Tables.Receipts);
+        try (ResultSet rs = query.execute(user, c, month, year))
+        {
+            if (rs.next())
+            {
+                float sum = rs.getFloat("sumPrice");
+                return sum;
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return 0;
+    }
 }
