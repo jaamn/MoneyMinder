@@ -10,11 +10,6 @@ import java.util.StringJoiner;
 
 public class SelectFromStores implements SelectQuery {
 
-    public ResultSet execute(Object c, Object o)
-    {
-        return null;
-    }
-
     public ResultSet execute(Object o)
     {
         String name = (String) o;
@@ -58,5 +53,15 @@ public class SelectFromStores implements SelectQuery {
             System.err.println(e.getMessage());
         }
         return rs;
+    }
+
+    public ResultSet execute(Object o, Object m, Object y)
+    {
+        return null;
+    }
+
+    public ResultSet execute(Object c, Object o)
+    {
+        return null;
     }
 }

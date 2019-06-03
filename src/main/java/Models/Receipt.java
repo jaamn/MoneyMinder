@@ -1,6 +1,10 @@
 package Models;
 
+import Utils.SQL.QueryFactory.SelectQueryFactory;
+import Utils.SQL.QueryStatements.SelectQueries.SelectQuery;
+
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.util.StringJoiner;
 
 public class Receipt {
@@ -39,5 +43,24 @@ public class Receipt {
         sj.add("\t'" + this.date + "'");
 
         return sj.toString();
+    }
+
+    public static float getSpendingForMonth(User user, String month, String year)
+    {
+        SelectQuery query = SelectQueryFactory.getQuery(Tables.Receipts);
+        try (ResultSet rs = query.execute(user, month, year))
+        {
+            if (rs.next())
+            {
+                float sum = rs.getFloat("sumPrice");
+                return sum;
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return 0;
     }
 }

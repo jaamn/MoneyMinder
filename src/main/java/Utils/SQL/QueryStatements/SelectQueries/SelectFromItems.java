@@ -2,7 +2,6 @@ package Utils.SQL.QueryStatements.SelectQueries;
 
 import Models.Category;
 import Models.User;
-import Models.UserPassPair;
 import Utils.SQL.JDBC.SQLiteConnector;
 
 import java.sql.Connection;
@@ -83,6 +82,11 @@ public class SelectFromItems implements SelectQuery {
             System.err.println(e.getMessage());
         }
         return rs;
+    }
+
+    public ResultSet execute(Object o, Object m, Object y)
+    {
+        return null;
     }
 
 }

@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.Receipt;
 import Models.User;
 import javafx.fxml.FXML;
 import javafx.scene.chart.CategoryAxis;
@@ -35,6 +36,7 @@ public class LineChartController {
 
     public void initialize(){
         loadDemoChart();
+        loadChart();
     }
 
     private void loadDemoChart(){
@@ -57,9 +59,20 @@ public class LineChartController {
     }
 
     private void loadChart(){
+
+        // USE SQL FACTORIES OR STATIC METHODS IN MODEL CLASSES
+
+        // Receipt.getSpendingForMonth(user, month, year));
+        // will return the sum of the price of all items for that user that month
+
+        // EXAMPLE
+        System.err.println(Receipt.getSpendingForMonth(user, "06", "2019"));
+
         // I added price field in item model;
         // we need another model to organize our spending by month
         // select month, amount FROM my_spending ORDER BY month asc
+
+        /*
         String query = "select month, amount FROM my_spending ORDER BY month asc";
         series = new XYChart.Series<>();
         try {
@@ -75,6 +88,7 @@ public class LineChartController {
         } catch (Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
+        */
 
 
     }

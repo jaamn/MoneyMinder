@@ -2,7 +2,6 @@ package Utils.SQL.QueryFactory;
 
 import Models.Tables;
 import Utils.SQL.QueryStatements.SelectQueries.*;
-import com.sun.org.apache.bcel.internal.generic.Select;
 
 public class SelectQueryFactory {
     public static SelectQuery getQuery(Tables name)
@@ -23,6 +22,10 @@ public class SelectQueryFactory {
         if (name.equals(Tables.Users))
         {
             return new SelectFromUsers();
+        }
+        if (name.equals(Tables.Receipts))
+        {
+            return new SelectFromReceipts();
         }
 
         return null;

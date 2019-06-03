@@ -1,10 +1,6 @@
 package Utils.SQL.QueryStatements.SelectQueries;
 
-import Models.Item;
-import Models.UserPassPair;
 import Utils.SQL.JDBC.SQLiteConnector;
-
-import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,11 +8,6 @@ import java.sql.Statement;
 import java.util.StringJoiner;
 
 public class SelectFromCategories implements SelectQuery {
-
-    public ResultSet execute(Object c, Object o)
-    {
-        return null;
-    }
 
     public ResultSet execute(Object o)
     {
@@ -61,5 +52,15 @@ public class SelectFromCategories implements SelectQuery {
             System.err.println(e.getMessage());
         }
         return rs;
+    }
+
+    public ResultSet execute(Object o, Object m, Object y)
+    {
+        return null;
+    }
+
+    public ResultSet execute(Object c, Object o)
+    {
+        return null;
     }
 }
