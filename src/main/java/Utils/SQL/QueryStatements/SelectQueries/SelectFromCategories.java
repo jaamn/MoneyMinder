@@ -1,27 +1,28 @@
 package Utils.SQL.QueryStatements.SelectQueries;
 
+import Models.Item;
 import Models.UserPassPair;
 import Utils.SQL.JDBC.SQLiteConnector;
 
+import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.StringJoiner;
 
-public class SelectFromUsers implements SelectQuery {
+public class SelectFromCategories implements SelectQuery {
 
     public ResultSet execute(Object o)
     {
-        UserPassPair user = (UserPassPair) o;
+        Integer cid = (Integer) o;
         ResultSet rs = null;
         try
         {
             Connection dbConn = SQLiteConnector.getInstance().getConnection();
             Statement stmt = dbConn.createStatement();
             StringJoiner sj = new StringJoiner("\n");
-            sj.add("SELECT * FROM Users WHERE");
-            sj.add(user.getSelectFields());
+            sj.add("SELECT * FROM Categories WHERE cid = " + cid);
             sj.add(";");
             String select = sj.toString();
             System.out.println(select);
@@ -43,7 +44,7 @@ public class SelectFromUsers implements SelectQuery {
             Connection dbConn = SQLiteConnector.getInstance().getConnection();
             Statement stmt = dbConn.createStatement();
             StringJoiner sj = new StringJoiner("\n");
-            sj.add("SELECT * FROM Users");
+            sj.add("SELECT * FROM Categories");
             sj.add(";");
             String select = sj.toString();
             System.out.println(select);

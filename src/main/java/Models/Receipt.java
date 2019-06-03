@@ -7,8 +7,15 @@ public class Receipt {
 
     private int rid;
     private int sid;
-    private int username;
+    private String username;
     private Date date;
+
+    public Receipt(int rid, int sid, String username, Date date) {
+        this.rid = rid;
+        this.sid = sid;
+        this.username = username;
+        this.date = date;
+    }
 
     public static String fieldsForTableCreation()
     {
@@ -19,6 +26,17 @@ public class Receipt {
         sj.add("date DATE");
         sj.add("FOREIGN KEY(sid) REFERENCES Stores(sid)");
         sj.add("FOREIGN KEY(username) REFERENCES Users(username)");
+
+        return sj.toString();
+    }
+
+    public String getInsertFields()
+    {
+        StringJoiner sj = new StringJoiner(",\n");
+        sj.add("\t" + this.rid);
+        sj.add("\t" + this.sid);
+        sj.add("\t'" + this.username+ "'");
+        sj.add("\t'" + this.date + "'");
 
         return sj.toString();
     }

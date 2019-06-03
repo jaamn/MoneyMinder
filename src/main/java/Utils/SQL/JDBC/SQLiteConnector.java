@@ -18,7 +18,7 @@ public class SQLiteConnector {
     }
 
     private SQLiteConnector() throws ClassNotFoundException, SQLException {
-        Class.forName("org.sqlite.JDBC");//("com.mysql.cj.jdbc.Driver");
+        Class.forName("org.sqlite.JDBC");
         connection = establishConnection();
     }
 

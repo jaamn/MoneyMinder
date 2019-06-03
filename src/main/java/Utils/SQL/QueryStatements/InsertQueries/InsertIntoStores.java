@@ -1,6 +1,5 @@
 package Utils.SQL.QueryStatements.InsertQueries;
 
-import Models.User;
 import Utils.SQL.JDBC.SQLiteConnector;
 
 import java.sql.Connection;
@@ -8,17 +7,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.StringJoiner;
 
-public class InsertIntoUsers implements InsertQuery {
-
+public class InsertIntoStores implements InsertQuery {
     public boolean execute(Object o)
     {
-        User user = (User) o;
+        String name = (String) o;
         try {
             Connection dbConn = SQLiteConnector.getInstance().getConnection();
             Statement stmt = dbConn.createStatement();
             StringJoiner sj = new StringJoiner("\n");
-            sj.add("INSERT INTO Users VALUES(");
-            sj.add(user.getInsertFields());
+            sj.add("INSERT INTO Stores(name) VALUES(");
+            sj.add("'" + name + "'");
             sj.add(");");
             String insert = sj.toString();
             System.out.println(insert);

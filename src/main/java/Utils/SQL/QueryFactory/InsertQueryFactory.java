@@ -1,13 +1,12 @@
 package Utils.SQL.QueryFactory;
 
 import Models.Tables;
-import Utils.SQL.QueryStatements.InsertQueries.InsertIntoUsers;
-import Utils.SQL.QueryStatements.InsertQueries.InsertQuery;
+import Utils.SQL.QueryStatements.InsertQueries.*;
 
 public class InsertQueryFactory {
     public static InsertQuery getQuery(Tables name)
     {
-        /*
+
         if (name.equals(Tables.Categories))
         {
             return new InsertIntoCategories();
@@ -24,7 +23,6 @@ public class InsertQueryFactory {
         {
             return new InsertIntoStores();
         }
-        */
         if (name.equals(Tables.Users))
         {
             return new InsertIntoUsers();
