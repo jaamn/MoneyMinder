@@ -7,6 +7,9 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import sun.util.resources.CalendarData;
+import java.text.DateFormatSymbols;
+import java.util.Calendar;
 
 public class LineChartController {
 
@@ -53,21 +56,22 @@ public class LineChartController {
     }
 
     private void loadChart(){
-
         // TODO
 
-        // Receipt.getSpendingForMonth(user, month, year));
-        // will return the sum of the price of all items for that user that month
+        DateFormatSymbols dfs = new DateFormatSymbols(); // encapsulate date-time formatting data
+        String[] months = dfs.getMonths(); // extract the months
+        String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR)); // extract the current year
 
+        // Should be in FOR LOOP by category
+        XYChart.Series series = new XYChart.Series(); // should be series PER CATEGORY
+        series.setName("category-X"); // name series that category
+        for(String month : months) {
+            series.getData().add(new XYChart.Data(month, Receipt.getSpendingForMonth(user, month, year));
+            // will return the sum of the price of all items for that user that month
+        }
+        lineChart.getData().add(series);
         // EXAMPLE
         System.err.println(Receipt.getSpendingForMonth(user, "06", "2019"));
-
-
-
-
-
-
-
 
         // I added price field in item model;
         // we need another model to organize our spending by month
@@ -92,8 +96,6 @@ public class LineChartController {
             JOptionPane.showMessageDialog(null, e);
         }
         */
-
-
     }
 
     /*
