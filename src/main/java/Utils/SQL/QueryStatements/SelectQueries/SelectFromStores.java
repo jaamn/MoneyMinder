@@ -64,4 +64,9 @@ public class SelectFromStores implements SelectQuery {
     {
         return null;
     }
+
+    public ResultSet execute(Object o, Object c, Object m, Object y)
+    {
+        return null;
+    }
 }
