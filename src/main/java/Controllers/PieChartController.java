@@ -74,6 +74,12 @@ public class PieChartController {
         // Item.getSumPriceForCategory(user, c);
         // will return a sum of the prices of all items in the Category c for the User user
 
+        // Categories: Category.getCategories();
+        // will return a list of all categories in the database
+
+        // Items: Item.getItemsForUser(user);
+        // will return a list of all items for a User user
+
         //EXAMPLE:
         for (Category c : Category.getCategories())
         {
@@ -81,15 +87,11 @@ public class PieChartController {
             System.err.println(c.getName() + ": " + total);
         }
 
-        // Categories: Category.getCategories();
-        // will return a list of all categories in the database
 
-        // Items: Item.getItemsForUser(user);
-        // will return a list of all items for a User user
 
 
         /*
-        USE SQL FACTORIES OR STATIC METHODS IN MODEL CLASSES
+        USE SQL FACTORIES OR STATIC METHODS IN MODEL CLASSES instead of this
 
         Connection connection;
         piechartdata = FXCollections.observableArrayList();

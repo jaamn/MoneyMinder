@@ -8,12 +8,6 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
-import javax.swing.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 public class LineChartController {
 
     private User user;
@@ -60,7 +54,7 @@ public class LineChartController {
 
     private void loadChart(){
 
-        // USE SQL FACTORIES OR STATIC METHODS IN MODEL CLASSES
+        // TODO
 
         // Receipt.getSpendingForMonth(user, month, year));
         // will return the sum of the price of all items for that user that month
@@ -68,11 +62,20 @@ public class LineChartController {
         // EXAMPLE
         System.err.println(Receipt.getSpendingForMonth(user, "06", "2019"));
 
+
+
+
+
+
+
+
         // I added price field in item model;
         // we need another model to organize our spending by month
         // select month, amount FROM my_spending ORDER BY month asc
 
         /*
+        // USE SQL FACTORIES OR STATIC METHODS IN MODEL CLASSES instead of this
+
         String query = "select month, amount FROM my_spending ORDER BY month asc";
         series = new XYChart.Series<>();
         try {
@@ -93,6 +96,8 @@ public class LineChartController {
 
     }
 
+    /*
+    USE SQL FACTORIES OR STATIC METHODS IN MODEL CLASSES instead of this
     private Connection connectDB(){
         try{
             Connection connection = DriverManager.getConnection("jdbc:sqlite:database.db");
@@ -103,4 +108,5 @@ public class LineChartController {
         }
         return null;
     }
+    */
 }
