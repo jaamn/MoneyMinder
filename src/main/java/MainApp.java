@@ -8,6 +8,7 @@ import Utils.SQL.QueryStatements.InsertQueries.InsertQuery;
 import Utils.SwitchScene;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
@@ -41,7 +42,8 @@ public class MainApp extends Application {
             query.execute();
         }
 
-        if (Category.getCategories() == null) {
+        ObservableList<Category> categories = Category.getCategories();
+        if (categories.size() == 0) {
             for (Category c : Category.getPresetCategories()) {
                 InsertQuery insert = InsertQueryFactory.getQuery(Tables.Categories);
                 insert.execute(c);

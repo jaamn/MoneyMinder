@@ -20,6 +20,12 @@ public class AddItemDialogController {
     TextField quantity;
 
     @FXML
+    TextField price;
+
+    @FXML
+    TextField name;
+
+    @FXML
     ComboBox<Category> category;
 
     private Stage dialogStage;
@@ -59,6 +65,8 @@ public class AddItemDialogController {
         if (isInputValid()) {
             item.setCid(category.getValue().getCid());
             item.setQuantity(Integer.parseInt(quantity.getText()));
+            item.setPrice(Float.parseFloat(price.getText()));
+            item.setName(name.getText());
 
             okClicked = true;
             dialogStage.close();
@@ -80,12 +88,29 @@ public class AddItemDialogController {
         {
             errorMessage += "Enter quantity\n";
         }
+        if (name.getText() == null)
+        {
+            errorMessage += "Enter name\n";
+        }
         else
         {
             try {
                 Integer.parseInt(quantity.getText());
             } catch (NumberFormatException e) {
                 errorMessage += "Quantity must be integer\n";
+            }
+        }
+
+        if (price.getText() == null)
+        {
+            errorMessage += "Enter price\n";
+        }
+        else
+        {
+            try {
+                Float.parseFloat(price.getText());
+            } catch (NumberFormatException e) {
+                errorMessage += "Price must be number\n";
             }
         }
 

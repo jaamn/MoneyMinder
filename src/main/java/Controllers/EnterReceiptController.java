@@ -3,8 +3,6 @@ package Controllers;
 import Models.*;
 import Utils.SQL.QueryFactory.InsertQueryFactory;
 import Utils.SQL.QueryStatements.InsertQueries.InsertQuery;
-import Utils.SQL.QueryStatements.SelectQueries.SelectQuery;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,13 +10,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Date;
-
-import static Models.Tables.Stores;
 
 public class EnterReceiptController {
 
@@ -32,6 +27,12 @@ public class EnterReceiptController {
 
     @FXML
     TableColumn<Item, String> itemQuantity;
+
+    @FXML
+    TableColumn<Item, String> itemName;
+
+    @FXML
+    TableColumn<Item, String> itemPrice;
 
     @FXML
     TextField receiptIDField;
@@ -58,8 +59,11 @@ public class EnterReceiptController {
     @FXML
     public void initialize() throws IOException {
 
+        itemTable.setPlaceholder(new Label("Enter Items"));
         itemCategory.setCellValueFactory(cellData -> cellData.getValue().getCategoryName());
         itemQuantity.setCellValueFactory(cellData -> cellData.getValue().quantityProperty());
+        itemName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        itemPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
         itemTable.setItems(items);
 
         submitButton.setOnAction(event -> {

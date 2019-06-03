@@ -16,9 +16,11 @@ public class InsertIntoItems implements InsertQuery {
             Connection dbConn = SQLiteConnector.getInstance().getConnection();
             Statement stmt = dbConn.createStatement();
             StringJoiner sj = new StringJoiner("\n");
-            sj.add("INSERT INTO Items(rid, cid, quantity) VALUES(");
+            sj.add("INSERT INTO Items(rid, cid, name, price, quantity) VALUES(");
             sj.add(i.getRid() + ",");
             sj.add(i.getCid() + ",");
+            sj.add("'" + i.getName() + "',");
+            sj.add(i.getPrice() + ",");
             sj.add(Integer.toString(i.getQuantity()));
             sj.add(");");
             String insert = sj.toString();

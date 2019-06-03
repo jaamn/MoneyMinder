@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.Category;
+import Models.Item;
 import Models.User;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -68,6 +69,12 @@ public class PieChartController {
 //    }
 
     private void loadData(){
+
+        // TODO
+        // These below will return ObservableArrayLists of the Categories and of the user's items
+        // Categories: Category.getCategories();
+        // Items: Item.getItemsForUser(user);
+
         Connection connection;
         piechartdata = FXCollections.observableArrayList();
         try {
@@ -85,6 +92,7 @@ public class PieChartController {
     }
 
     private void loadDemoData(){
+
         piechartdata = FXCollections.observableArrayList(
                 new PieChart.Data("Groceries", 13),
                 new PieChart.Data("Personal", 25),

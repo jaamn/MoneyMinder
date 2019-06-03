@@ -73,6 +73,9 @@ public class Category {
         categories.add(new Category(1, "Groceries"));
         categories.add(new Category(2, "Personal"));
         categories.add(new Category(3, "Entertainment"));
+        categories.add(new Category(4, "Transportation"));
+        categories.add(new Category(5, "Bills"));
+        categories.add(new Category(6, "One-offs"));
         return categories;
     }
 }
