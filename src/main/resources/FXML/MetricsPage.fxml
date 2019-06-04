@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="186.0" layoutY="74.0" text="Running total of expenses this month" />
-      <ProgressBar fx:id="progressBar" layoutX="200.0" layoutY="136.0" prefWidth="200.0" progress="0.0" />
-      <ProgressIndicator fx:id="progressIndicator" layoutX="416.0" layoutY="126.0" progress="0.0" />
+      <Label layoutX="186.0" layoutY="45.0" text="Running total of expenses this month" />
+      <Text fx:id="totalSpending" layoutX="186.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" underline="true" wrappingWidth="219.66796875">
+         <font>
+            <Font size="50.0" />
+         </font></Text>
+      <TableView fx:id="MostSpending" layoutX="103.0" layoutY="167.0" prefHeight="200.0" prefWidth="152.0">
+        <columns>
+          <TableColumn fx:id="MostCategoryName" prefWidth="75.0" text="Category" />
+          <TableColumn fx:id="MostPrice" prefWidth="75.0" text="Price" />
+        </columns>
+      </TableView>
+      <TableView fx:id="LeastSpending" layoutX="338.0" layoutY="167.0" prefHeight="200.0" prefWidth="152.0">
+        <columns>
+          <TableColumn fx:id="LeastCategoryName" prefWidth="75.0" text="Category" />
+          <TableColumn fx:id="LeastPrice" prefWidth="75.0" text="Price" />
+        </columns>
+      </TableView>
+      <Text layoutX="86.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Most spending in each category" />
+      <Text layoutX="320.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Least spending in each category" />
    </children>
 </Pane>

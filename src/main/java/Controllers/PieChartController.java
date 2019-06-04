@@ -3,15 +3,18 @@ package Controllers;
 import Models.Category;
 import Models.Item;
 import Models.User;
+import Utils.SwitchScene;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.sql.*;
@@ -43,7 +46,6 @@ public class PieChartController {
     @FXML
     public void initialize(){
         loadData();
-        loadDemoData();
         pieChart.setData(piechartdata);
 
 //        filterButton.setOnAction(event -> {
@@ -68,6 +70,12 @@ public class PieChartController {
 //                endDate.valueProperty()));
 //    }
 
+    private void switchBackToAnalyticsFilter() {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getClassLoader().getResource("FXML/AnalyticsFilter.fxml"));
+        SwitchScene.switchScene(loader,"AnalyticsFilter");
+    }
+
     private void loadData(){
 
         // TODO
@@ -80,44 +88,13 @@ public class PieChartController {
         // Items: Item.getItemsForUser(user);
         // will return a list of all items for a User user
 
+        piechartdata = FXCollections.observableArrayList();
         //EXAMPLE:
         for (Category c : Category.getCategories())
         {
             float total = Item.getSumPriceForCategory(user, c);
+            piechartdata.add(new PieChart.Data(c.toString(), total));
             System.err.println(c.getName() + ": " + total);
         }
-
-
-
-
-        /*
-        USE SQL FACTORIES OR STATIC METHODS IN MODEL CLASSES instead of this
-
-        Connection connection;
-        piechartdata = FXCollections.observableArrayList();
-        try {
-            connection = DriverManager.getConnection("jdbc:sqlite:database.db");
-            JOptionPane.showMessageDialog(null, "Connected");
-            PreparedStatement ps = connection.prepareStatement("select * FROM Categories");
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                //name and value
-                piechartdata.add(new PieChart.Data(rs.getString("name"), rs.getInt(1)));
-            }
-        } catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, ex);
-        }
-        */
-    }
-
-    private void loadDemoData(){
-
-        piechartdata = FXCollections.observableArrayList(
-                new PieChart.Data("Groceries", 13),
-                new PieChart.Data("Personal", 25),
-                new PieChart.Data("Entertainment", 10),
-                new PieChart.Data("Transportation", 22),
-                new PieChart.Data("Bills", 30),
-                new PieChart.Data("One-offs", 50));
     }
 }

@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
 public class RegisterController {
@@ -41,7 +42,6 @@ public class RegisterController {
                 User user = new User(usernameField.getText(), firstnameField.getText(), lastnameField.getText(), passwordField.getText());
                 if (user.registerUser())
                 {
-                    // what if we want to go back to login page?
                     ((Node) (event.getSource())).getScene().getWindow().hide();
                     switchToLoginScene();
                 }

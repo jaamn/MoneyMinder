@@ -162,6 +162,20 @@ public class Item {
         return prop;
     }
 
+    public StringProperty getMinProperty(User user, Category c)
+    {
+        StringProperty minProp = new SimpleStringProperty();
+        minProp.setValue(Float.toString(getMinPriceForCategory(user, c)));
+        return minProp;
+    }
+
+    public StringProperty getMaxProperty(User user, Category c)
+    {
+        StringProperty maxProp = new SimpleStringProperty();
+        maxProp.setValue(Float.toString(getMaxPriceForCategory(user, c)));
+        return maxProp;
+    }
+
     public static float getSumPriceForCategory(User user, Category c)
     {
         SelectQuery query = SelectQueryFactory.getAggregateQuery(Tables.Items, "SUM");
@@ -218,5 +232,4 @@ public class Item {
         }
         return 0;
     }
-
 }
