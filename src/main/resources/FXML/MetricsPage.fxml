@@ -14,16 +14,16 @@
          </font></Text>
       <TableView fx:id="MostSpending" layoutX="44.0" layoutY="167.0" prefHeight="200.0" prefWidth="220.0">
         <columns>
-          <TableColumn fx:id="MostCategoryName" prefWidth="75.0" text="Category" />
-          <TableColumn fx:id="MostItem" prefWidth="89.0" text="Item" />
-            <TableColumn fx:id="MostPrice" prefWidth="61.0" text="Price" />
+          <TableColumn fx:id="MostCategoryName" prefWidth="95.0" text="Category" />
+          <TableColumn fx:id="MostItem" prefWidth="88.0" text="Item" />
+            <TableColumn fx:id="MostPrice" prefWidth="42.0" text="Price" />
         </columns>
       </TableView>
       <TableView fx:id="LeastSpending" layoutX="328.0" layoutY="167.0" prefHeight="200.0" prefWidth="220.0">
         <columns>
-          <TableColumn fx:id="LeastCategoryName" prefWidth="75.0" text="Category" />
-          <TableColumn fx:id="LeastItem" prefWidth="86.0" text="Item" />
-            <TableColumn fx:id="LeastPrice" prefWidth="64.0" text="Price" />
+          <TableColumn fx:id="LeastCategoryName" prefWidth="98.0" text="Category" />
+          <TableColumn fx:id="LeastItem" prefWidth="78.0" text="Item" />
+            <TableColumn fx:id="LeastPrice" prefWidth="49.0" text="Price" />
         </columns>
       </TableView>
       <Text layoutX="48.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Most Expensive Item Per Category" />

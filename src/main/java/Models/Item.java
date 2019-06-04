@@ -7,6 +7,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.StringJoiner;
 
@@ -87,10 +88,10 @@ public class Item {
         this.price = price;
     }
 
-    public static ObservableList<Item> getItemsForUser(User user)
+    public static ObservableList<ItemReceiptPair> getItemsForUser(User user)
     {
         SelectQuery query = SelectQueryFactory.getQuery(Tables.Items);
-        ObservableList<Item> items = FXCollections.observableArrayList();
+        ObservableList<ItemReceiptPair> items = FXCollections.observableArrayList();
         try (ResultSet rs = query.execute(user))
         {
             while (rs.next())
@@ -100,9 +101,17 @@ public class Item {
                 int rid = rs.getInt("rid");
                 float price = rs.getFloat("price");
                 int quantity = rs.getInt("quantity");
+                int sid = rs.getInt("sid");
+                //java.sql.Date date = rs.getDate("date");
+                String date = rs.getString("date");
 
                 Item item = new Item(rid, cid, name, price, quantity);
-                items.add(item);
+                Receipt receipt = new Receipt(rid, sid, user.getUsername(), Date.valueOf(date));
+                ItemReceiptPair irPair = new ItemReceiptPair(item, receipt);
+
+                items.add(irPair);
+                //Item item = new Item(rid, cid, name, price, quantity);
+                //items.add(item);
             }
         }
         catch (Exception e)

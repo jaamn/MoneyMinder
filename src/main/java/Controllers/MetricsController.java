@@ -71,12 +71,12 @@ public class MetricsController extends Returnable{
         for(Category c: Category.getCategories()){
             totalMoney += Receipt.getSpendingPerCategoryForMonth(user, c, monthStr, yrStr);
             CategoryPricePair min = Item.getMinPriceForCategoryForMonth(user, c, monthStr, yrStr);
-            if (min != null)
+            if (min.getPrice() != 0)
             {
                 lsList.add(min);
             }
             CategoryPricePair max = Item.getMaxPriceForCategoryForMonth(user, c, monthStr, yrStr);
-            if (max != null)
+            if (max.getPrice() != 0)
             {
                 msList.add(max);
             }

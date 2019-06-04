@@ -26,7 +26,7 @@ public class SelectFromItems implements SelectQuery {
             Connection dbConn = SQLiteConnector.getInstance().getConnection();
             Statement stmt = dbConn.createStatement();
             StringJoiner sj = new StringJoiner("\n");
-            sj.add("SELECT * FROM Items INNER JOIN Receipts WHERE username = ");
+            sj.add("SELECT * FROM Items NATURAL JOIN Receipts WHERE username = ");
             sj.add("'" + user.getUsername() + "'");
             sj.add(";");
             String select = sj.toString();

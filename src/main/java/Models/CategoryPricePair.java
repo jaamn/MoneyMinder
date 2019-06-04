@@ -16,6 +16,10 @@ public class CategoryPricePair {
         this.name = name;
     }
 
+    public float getPrice() {
+        return price;
+    }
+
     public StringProperty getCategoryName()
     {
         return new SimpleStringProperty(this.category.getName());

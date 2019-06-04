@@ -19,6 +19,32 @@ public class SelectAggregateFromItems implements SelectQuery {
         this.op = agg;
     }
 
+    public ResultSet execute(Object c, Object o)
+    {
+        User user = (User) o;
+        Category category = (Category) c;
+        ResultSet rs = null;
+        try
+        {
+            Connection dbConn = SQLiteConnector.getInstance().getConnection();
+            Statement stmt = dbConn.createStatement();
+            StringJoiner sj = new StringJoiner("\n");
+            sj.add("SELECT " + op + "(price) as aggPrice, name FROM Items INNER JOIN Receipts WHERE username = ");
+            sj.add("'" + user.getUsername() + "'");
+            sj.add("AND cid = " + category.getCid());
+            sj.add(";");
+            String select = sj.toString();
+            System.out.println(select);
+            rs = stmt.executeQuery(select);
+        }
+        catch (SQLException | ClassNotFoundException e)
+        {
+            e.printStackTrace();
+            System.err.println(e.getMessage());
+        }
+        return rs;
+    }
+
     public ResultSet execute(Object c, Object o, Object m, Object y)
     {
         User user = (User) o;
@@ -59,12 +85,6 @@ public class SelectAggregateFromItems implements SelectQuery {
         return null;
     }
     public ResultSet execute(Object o)
-    {
-        return null;
-    }
-
-
-    public ResultSet execute(Object o, Object c)
     {
         return null;
     }
