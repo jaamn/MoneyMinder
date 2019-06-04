@@ -10,46 +10,28 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.StringJoiner;
 
-public class SelectFromItems implements SelectQuery {
+public class SelectAggregateFromItems implements SelectQuery {
+
+    String op;
+
+    public SelectAggregateFromItems(String agg)
+    {
+        this.op = agg;
+    }
 
     public ResultSet execute(Object c, Object o)
     {
-        return null;
-    }
-
-    public ResultSet execute(Object o)
-    {
         User user = (User) o;
+        Category category = (Category) c;
         ResultSet rs = null;
         try
         {
             Connection dbConn = SQLiteConnector.getInstance().getConnection();
             Statement stmt = dbConn.createStatement();
             StringJoiner sj = new StringJoiner("\n");
-            sj.add("SELECT * FROM Items INNER JOIN Receipts WHERE username = ");
+            sj.add("SELECT " + op + "(price) as aggPrice FROM Items INNER JOIN Receipts WHERE username = ");
             sj.add("'" + user.getUsername() + "'");
-            sj.add(";");
-            String select = sj.toString();
-            System.out.println(select);
-            rs = stmt.executeQuery(select);
-        }
-        catch (SQLException | ClassNotFoundException e)
-        {
-            e.printStackTrace();
-            System.err.println(e.getMessage());
-        }
-        return rs;
-    }
-
-    public ResultSet execute()
-    {
-        ResultSet rs = null;
-        try
-        {
-            Connection dbConn = SQLiteConnector.getInstance().getConnection();
-            Statement stmt = dbConn.createStatement();
-            StringJoiner sj = new StringJoiner("\n");
-            sj.add("SELECT * FROM Items");
+            sj.add("AND cid = " + category.getCid());
             sj.add(";");
             String select = sj.toString();
             System.out.println(select);
@@ -68,9 +50,18 @@ public class SelectFromItems implements SelectQuery {
         return null;
     }
 
-    public ResultSet execute(Object o, Object c, Object m, Object y)
+    public ResultSet execute()
+    {
+        return null;
+    }
+    public ResultSet execute(Object o)
     {
         return null;
     }
 
+
+    public ResultSet execute(Object o, Object c, Object m, Object y)
+    {
+        return null;
+    }
 }

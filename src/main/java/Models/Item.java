@@ -164,12 +164,50 @@ public class Item {
 
     public static float getSumPriceForCategory(User user, Category c)
     {
-        SelectQuery query = SelectQueryFactory.getQuery(Tables.Items);
+        SelectQuery query = SelectQueryFactory.getAggregateQuery(Tables.Items, "SUM");
         try (ResultSet rs = query.execute(c, user))
         {
             if (rs.next())
             {
-                float sum = rs.getFloat("sumPrice");
+                float sum = rs.getFloat("aggPrice");
+                return sum;
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return 0;
+    }
+
+    public static float getMinPriceForCategory(User user, Category c)
+    {
+        SelectQuery query = SelectQueryFactory.getAggregateQuery(Tables.Items, "MIN");
+        try (ResultSet rs = query.execute(c, user))
+        {
+            if (rs.next())
+            {
+                float sum = rs.getFloat("aggPrice");
+                return sum;
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return 0;
+    }
+
+    public static float getMaxPriceForCategory(User user, Category c)
+    {
+        SelectQuery query = SelectQueryFactory.getAggregateQuery(Tables.Items, "MAX");
+        try (ResultSet rs = query.execute(c, user))
+        {
+            if (rs.next())
+            {
+                float sum = rs.getFloat("aggPrice");
                 return sum;
             }
         }

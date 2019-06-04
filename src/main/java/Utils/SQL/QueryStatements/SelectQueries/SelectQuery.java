@@ -14,4 +14,6 @@ public interface SelectQuery {
 
     ResultSet execute();
 
+
+
 }
