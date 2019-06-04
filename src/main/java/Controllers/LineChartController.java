@@ -1,7 +1,14 @@
 package Controllers;
 
+import Models.Category;
 import Models.Receipt;
+import Models.Tables;
 import Models.User;
+import Utils.SQL.QueryFactory.InsertQueryFactory;
+import Utils.SQL.QueryStatements.InsertQueries.InsertQuery;
+import com.sun.org.apache.bcel.internal.generic.SWITCH;
+import javafx.collections.ObservableList;
+import javafx.embed.swt.SWTFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
@@ -9,6 +16,8 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import sun.util.resources.CalendarData;
 import java.text.DateFormatSymbols;
+import java.text.DecimalFormat;
+import java.time.Month;
 import java.util.Calendar;
 
 public class LineChartController {
@@ -32,7 +41,7 @@ public class LineChartController {
     }
 
     public void initialize(){
-        loadDemoChart();
+        //loadDemoChart();
         loadChart();
     }
 
@@ -61,17 +70,25 @@ public class LineChartController {
         DateFormatSymbols dfs = new DateFormatSymbols(); // encapsulate date-time formatting data
         String[] months = dfs.getMonths(); // extract the months
         String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR)); // extract the current year
+        DecimalFormat df = new DecimalFormat("00"); // month formatter
 
         // Should be in FOR LOOP by category
-        XYChart.Series series = new XYChart.Series(); // should be series PER CATEGORY
-        series.setName("category-X"); // name series that category
-        for(String month : months) {
-            series.getData().add(new XYChart.Data(month, Receipt.getSpendingForMonth(user, month, year));
-            // will return the sum of the price of all items for that user that month
+        ObservableList<Category> categories = Category.getCategories();
+        for(Category category : categories){
+            XYChart.Series series = new XYChart.Series(); // should be series PER CATEGORY
+            series.setName(category.getName()); // name series that category
+            for(String month : months) {
+                series.getData().add(new XYChart.Data(month, Receipt.getSpendingPerCategoryForMonth(
+                        user,
+                        category,
+                        df.format(Month.valueOf(month.toUpperCase()).getValue()), // ERROR
+                        year)));
+                // will return the sum of the price of all items for that user that month
+                // EXAMPLE
+                System.err.println(Receipt.getSpendingForMonth(user, month, year));
+            }
+            lineChart.getData().add(series);
         }
-        lineChart.getData().add(series);
-        // EXAMPLE
-        System.err.println(Receipt.getSpendingForMonth(user, "06", "2019"));
 
         // I added price field in item model;
         // we need another model to organize our spending by month
