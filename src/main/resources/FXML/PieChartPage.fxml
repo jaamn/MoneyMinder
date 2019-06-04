@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -12,5 +13,6 @@
       <DatePicker fx:id="endDate" layoutX="258.0" layoutY="82.0" promptText="End" />
       <DatePicker fx:id="startDate" layoutX="77.0" layoutY="82.0" promptText="Start" />
       <Button fx:id="filterButton" layoutX="438.0" layoutY="82.0" mnemonicParsing="false" text="Filter" />
+      <Button fx:id="returnButton" mnemonicParsing="false" text="&lt;-" />
    </children>
 </Pane>

@@ -3,24 +3,15 @@ package Controllers;
 import Models.Category;
 import Models.Item;
 import Models.User;
-import Utils.SwitchScene;
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Side;
+import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
-import javafx.stage.Stage;
 
-import javax.swing.*;
-import java.sql.*;
-import java.time.LocalDate;
-
-public class PieChartController {
+public class PieChartController extends BackToAnalyticsFilter{
 
     @FXML
     private PieChart pieChart;
@@ -33,6 +24,9 @@ public class PieChartController {
 
     @FXML
     private DatePicker endDate;
+
+    @FXML
+    private Button returnButton;
 
     private ObservableList piechartdata;
 
@@ -47,6 +41,10 @@ public class PieChartController {
     public void initialize(){
         loadData();
         pieChart.setData(piechartdata);
+        returnButton.setOnAction(event -> {
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+            switchBackToAnalyticsFilter(user);
+        });
 
 //        filterButton.setOnAction(event -> {
 //            filterEvent(piechartdata);
@@ -69,12 +67,6 @@ public class PieChartController {
 //                startDate.valueProperty(),
 //                endDate.valueProperty()));
 //    }
-
-    private void switchBackToAnalyticsFilter() {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getClassLoader().getResource("FXML/AnalyticsFilter.fxml"));
-        SwitchScene.switchScene(loader,"AnalyticsFilter");
-    }
 
     private void loadData(){
 

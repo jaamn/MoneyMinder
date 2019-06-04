@@ -26,5 +26,6 @@
       </TableView>
       <Text layoutX="86.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Most spending in each category" />
       <Text layoutX="320.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Least spending in each category" />
+      <Button fx:id="returnButton" mnemonicParsing="false" text="&lt;-" />
    </children>
 </Pane>

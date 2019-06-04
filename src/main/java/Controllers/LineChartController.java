@@ -5,14 +5,17 @@ import Models.Receipt;
 import Models.User;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 
-public class LineChartController {
+public class LineChartController extends BackToAnalyticsFilter{
 
     private User user;
 
@@ -25,6 +28,9 @@ public class LineChartController {
     @FXML
     private NumberAxis totalSpending;
 
+    @FXML
+    private Button returnButton;
+
     private XYChart.Series<String, Integer> series;
 
     public LineChartController(User user)
@@ -34,6 +40,10 @@ public class LineChartController {
 
     public void initialize(){
         loadChart();
+        returnButton.setOnAction(event -> {
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+            switchBackToAnalyticsFilter(user);
+        });
     }
 
     private String monthToSQL(String month){
