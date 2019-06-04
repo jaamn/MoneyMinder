@@ -2,22 +2,14 @@ package Controllers;
 
 import Models.Category;
 import Models.Receipt;
-import Models.Tables;
 import Models.User;
-import Utils.SQL.QueryFactory.InsertQueryFactory;
-import Utils.SQL.QueryStatements.InsertQueries.InsertQuery;
-import com.sun.org.apache.bcel.internal.generic.SWITCH;
 import javafx.collections.ObservableList;
-import javafx.embed.swt.SWTFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import sun.util.resources.CalendarData;
 import java.text.DateFormatSymbols;
-import java.text.DecimalFormat;
-import java.time.Month;
 import java.util.Calendar;
 
 public class LineChartController {
