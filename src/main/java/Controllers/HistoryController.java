@@ -49,6 +49,7 @@ public class HistoryController extends Returnable{
     @FXML
     public void initialize() throws IOException {
 
+        items.clear();
         itemCategory.setCellValueFactory(cellData -> cellData.getValue().getCategoryName());
         itemQuantity.setCellValueFactory(cellData -> cellData.getValue().quantityProperty());
         itemName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());

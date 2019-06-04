@@ -24,12 +24,13 @@ public class Receipt {
     public static String fieldsForTableCreation()
     {
         StringJoiner sj = new StringJoiner(",\n\t");
-        sj.add("\trid INTEGER PRIMARY KEY");
+        sj.add("\trid INTEGER ");
         sj.add("sid INTEGER");
         sj.add("username STRING");
         sj.add("date DATE");
         sj.add("FOREIGN KEY(sid) REFERENCES Stores(sid)");
         sj.add("FOREIGN KEY(username) REFERENCES Users(username)");
+        sj.add("PRIMARY KEY(rid, username)");
 
         return sj.toString();
     }

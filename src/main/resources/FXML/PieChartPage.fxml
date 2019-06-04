@@ -8,11 +8,8 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="174.0" layoutY="49.0" text="View spending percentages per category" />
+      <Label layoutX="174.0" layoutY="49.0" text="View Spending Percentages Per Category" />
       <PieChart fx:id="pieChart" layoutX="77.0" layoutY="118.0" prefHeight="260.0" prefWidth="411.0" />
-      <DatePicker fx:id="endDate" layoutX="258.0" layoutY="82.0" promptText="End" />
-      <DatePicker fx:id="startDate" layoutX="77.0" layoutY="82.0" promptText="Start" />
-      <Button fx:id="filterButton" layoutX="438.0" layoutY="82.0" mnemonicParsing="false" text="Filter" />
       <Button fx:id="returnButton" mnemonicParsing="false" text="&lt;-" />
    </children>
 </Pane>
