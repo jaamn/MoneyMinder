@@ -8,16 +8,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
-
 import java.time.YearMonth;
 import java.time.ZoneId;
 import java.util.List;
 
-public class MetricsController {
+public class MetricsController extends Returnable{
 
     @FXML
     private Text totalSpending;
@@ -39,6 +40,9 @@ public class MetricsController {
 
     @FXML
     private TableColumn<Item, String> LeastPrice;
+
+    @FXML
+    private Button returnButton;
 
     private User user;
 
@@ -82,5 +86,10 @@ public class MetricsController {
         LeastCategoryName.setCellValueFactory(cellData -> cellData.getValue().getCategoryName());
         lsList = Item.getItemsForUser(user);
         LeastSpending.setItems(lsList);
+
+        returnButton.setOnAction(event -> {
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+            returnToPage(user, "FXML/AnalyticsFilter.fxml", "Analytics filter", "analytics");
+        });
     }
 }

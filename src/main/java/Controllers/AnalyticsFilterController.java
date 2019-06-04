@@ -6,10 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import java.io.IOException;
 
-public class AnalyticsFilterController {
+public class AnalyticsFilterController extends Returnable{
 
     @FXML
     private Button pieChartButton;
@@ -19,6 +18,9 @@ public class AnalyticsFilterController {
 
     @FXML
     private Button metricsButton;
+
+    @FXML
+    private Button returnButton;
 
     private User user;
 
@@ -43,6 +45,11 @@ public class AnalyticsFilterController {
         metricsButton.setOnAction( event -> {
             ((Node)(event.getSource())).getScene().getWindow().hide();
             switchToMetrics();
+        });
+
+        returnButton.setOnAction(event -> {
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+            returnToPage(user, "FXML/MainMenu.fxml", "Main Menu", "main");
         });
     }
 

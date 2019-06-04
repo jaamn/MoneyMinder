@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
@@ -15,7 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Date;
 
-public class EnterReceiptController {
+public class EnterReceiptController extends Returnable{
 
     private User user;
 
@@ -49,6 +50,9 @@ public class EnterReceiptController {
     @FXML
     Button addItemButton;
 
+    @FXML
+    Button returnButton;
+
     private ObservableList<Item> items = FXCollections.observableArrayList();
 
     public EnterReceiptController(User user)
@@ -74,6 +78,10 @@ public class EnterReceiptController {
             showAddItemDialog();
         });
 
+        returnButton.setOnAction(event -> {
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+            returnToPage(user, "FXML/MainMenu.fxml", "Main Menu", "main");
+        });
     }
 
     private void handleSubmit() {

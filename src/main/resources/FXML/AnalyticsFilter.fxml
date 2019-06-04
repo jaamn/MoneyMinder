@@ -12,5 +12,6 @@
       <Button fx:id="metricsButton" layoutX="258.0" layoutY="285.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="94.0" text="Metrics" />
       <Label layoutX="261.0" layoutY="44.0" text="View Analytics" />
       <Label layoutX="168.0" layoutY="88.0" text="Choose how you would like to see your spending" />
+      <Button fx:id="returnButton" mnemonicParsing="false" text="&lt;-" />
    </children>
 </Pane>
