@@ -1,22 +1,16 @@
 package Controllers;
 
-import Models.Category;
-import Models.Item;
-import Models.Receipt;
-import Models.User;
+import Models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import java.time.YearMonth;
 import java.time.ZoneId;
-import java.util.List;
 
 public class MetricsController extends Returnable{
 
@@ -24,7 +18,7 @@ public class MetricsController extends Returnable{
     private Text totalSpending;
 
     @FXML
-    private TableColumn<Item, String> MostCategoryName;
+    private TableColumn<CategoryPricePair, String> MostCategoryName;
 
     @FXML
     private TableView MostSpending;
@@ -33,22 +27,28 @@ public class MetricsController extends Returnable{
     private TableView LeastSpending;
 
     @FXML
-    private TableColumn<Item, String> MostPrice;
+    private TableColumn<CategoryPricePair, String> MostPrice;
 
     @FXML
-    private TableColumn<Item, String> LeastCategoryName;
+    private TableColumn<CategoryPricePair, String> MostItem;
 
     @FXML
-    private TableColumn<Item, String> LeastPrice;
+    private TableColumn<CategoryPricePair, String> LeastCategoryName;
+
+    @FXML
+    private TableColumn<CategoryPricePair, String> LeastPrice;
+
+    @FXML
+    private TableColumn<CategoryPricePair, String> LeastItem;
 
     @FXML
     private Button returnButton;
 
     private User user;
 
-    private ObservableList<Item> msList = FXCollections.observableArrayList();
+    private ObservableList<CategoryPricePair> msList = FXCollections.observableArrayList();
 
-    private ObservableList<Item> lsList = FXCollections.observableArrayList();
+    private ObservableList<CategoryPricePair> lsList = FXCollections.observableArrayList();
 
     public MetricsController(User user)
     {
@@ -56,6 +56,7 @@ public class MetricsController extends Returnable{
     }
 
     public void initialize(){
+
         ZoneId z = ZoneId.of("America/Los_Angeles");
         YearMonth ym = YearMonth.now(z);
         int year = ym.getYear();
@@ -66,12 +67,37 @@ public class MetricsController extends Returnable{
             monthStr = "0".concat(monthStr);
         }
         // filter by month
-        int totalMoney = 0;
+        float totalMoney = 0;
         for(Category c: Category.getCategories()){
-            totalMoney += (int)Receipt.getSpendingPerCategoryForMonth(user, c, monthStr, yrStr);
+            totalMoney += Receipt.getSpendingPerCategoryForMonth(user, c, monthStr, yrStr);
+            CategoryPricePair min = Item.getMinPriceForCategoryForMonth(user, c, monthStr, yrStr);
+            if (min != null)
+            {
+                lsList.add(min);
+            }
+            CategoryPricePair max = Item.getMaxPriceForCategoryForMonth(user, c, monthStr, yrStr);
+            if (max != null)
+            {
+                msList.add(max);
+            }
         }
         totalSpending.setText("$" + totalMoney);
 
+        LeastCategoryName.setCellValueFactory(cellData -> cellData.getValue().getCategoryName());
+        MostCategoryName.setCellValueFactory(cellData -> cellData.getValue().getCategoryName());
+        LeastPrice.setCellValueFactory(cellData -> cellData.getValue().getPriceProp());
+        MostPrice.setCellValueFactory(cellData -> cellData.getValue().getPriceProp());
+        LeastItem.setCellValueFactory(cellData -> cellData.getValue().getItemProp());
+        MostItem.setCellValueFactory(cellData -> cellData.getValue().getItemProp());
+
+        MostSpending.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        MostSpending.setItems(msList);
+
+        LeastSpending.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        LeastSpending.setItems(lsList);
+
+
+        /*
         for(Category c: Category.getCategories()){
             MostPrice.setCellValueFactory(cellData -> cellData.getValue().getMaxProperty(user, c));
         }
@@ -86,6 +112,7 @@ public class MetricsController extends Returnable{
         LeastCategoryName.setCellValueFactory(cellData -> cellData.getValue().getCategoryName());
         lsList = Item.getItemsForUser(user);
         LeastSpending.setItems(lsList);
+        */
 
         returnButton.setOnAction(event -> {
             ((Node) (event.getSource())).getScene().getWindow().hide();

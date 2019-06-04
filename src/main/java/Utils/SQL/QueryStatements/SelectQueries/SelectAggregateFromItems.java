@@ -19,19 +19,23 @@ public class SelectAggregateFromItems implements SelectQuery {
         this.op = agg;
     }
 
-    public ResultSet execute(Object c, Object o)
+    public ResultSet execute(Object c, Object o, Object m, Object y)
     {
         User user = (User) o;
         Category category = (Category) c;
+        String month = (String) m;
+        String year = (String) y;
         ResultSet rs = null;
         try
         {
             Connection dbConn = SQLiteConnector.getInstance().getConnection();
             Statement stmt = dbConn.createStatement();
             StringJoiner sj = new StringJoiner("\n");
-            sj.add("SELECT " + op + "(price) as aggPrice FROM Items INNER JOIN Receipts WHERE username = ");
+            sj.add("SELECT " + op + "(price) as aggPrice, name FROM Items INNER JOIN Receipts WHERE username = ");
             sj.add("'" + user.getUsername() + "'");
             sj.add("AND cid = " + category.getCid());
+            sj.add("AND strftime('%Y', date) = '" + year + "'");
+            sj.add("AND strftime('%m', date) = '" + month + "'");
             sj.add(";");
             String select = sj.toString();
             System.out.println(select);
@@ -60,7 +64,7 @@ public class SelectAggregateFromItems implements SelectQuery {
     }
 
 
-    public ResultSet execute(Object o, Object c, Object m, Object y)
+    public ResultSet execute(Object o, Object c)
     {
         return null;
     }

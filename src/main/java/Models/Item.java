@@ -95,7 +95,6 @@ public class Item {
         {
             while (rs.next())
             {
-
                 String name = rs.getString("name");
                 int cid = rs.getInt("cid");
                 int rid = rs.getInt("rid");
@@ -162,6 +161,7 @@ public class Item {
         return prop;
     }
 
+    /*
     public StringProperty getMinProperty(User user, Category c)
     {
         StringProperty minProp = new SimpleStringProperty();
@@ -175,6 +175,7 @@ public class Item {
         maxProp.setValue(Float.toString(getMaxPriceForCategory(user, c)));
         return maxProp;
     }
+    */
 
     public static float getSumPriceForCategory(User user, Category c)
     {
@@ -195,15 +196,16 @@ public class Item {
         return 0;
     }
 
-    public static float getMinPriceForCategory(User user, Category c)
+    public static CategoryPricePair getMinPriceForCategoryForMonth(User user, Category c, String month, String year)
     {
         SelectQuery query = SelectQueryFactory.getAggregateQuery(Tables.Items, "MIN");
-        try (ResultSet rs = query.execute(c, user))
+        try (ResultSet rs = query.execute(c, user, month, year))
         {
             if (rs.next())
             {
-                float sum = rs.getFloat("aggPrice");
-                return sum;
+                float min = rs.getFloat("aggPrice");
+                String name = rs.getString("name");
+                return new CategoryPricePair(c, name, min);
             }
         }
         catch (Exception e)
@@ -211,18 +213,20 @@ public class Item {
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
-        return 0;
+        return null;
     }
 
-    public static float getMaxPriceForCategory(User user, Category c)
+    public static CategoryPricePair getMaxPriceForCategoryForMonth(User user, Category c, String month, String year)
     {
         SelectQuery query = SelectQueryFactory.getAggregateQuery(Tables.Items, "MAX");
-        try (ResultSet rs = query.execute(c, user))
+        try (ResultSet rs = query.execute(c, user, month, year))
         {
             if (rs.next())
             {
-                float sum = rs.getFloat("aggPrice");
-                return sum;
+                float max = rs.getFloat("aggPrice");
+                String name = rs.getString("name");
+                return new CategoryPricePair(c, name, max);
+
             }
         }
         catch (Exception e)
@@ -230,6 +234,6 @@ public class Item {
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
-        return 0;
+        return null;
     }
 }
