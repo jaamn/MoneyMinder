@@ -3,6 +3,7 @@ package Controllers;
 import Models.*;
 import Utils.SQL.QueryFactory.InsertQueryFactory;
 import Utils.SQL.QueryStatements.InsertQueries.InsertQuery;
+import Utils.SwitchScene;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -63,6 +64,7 @@ public class EnterReceiptController extends Returnable{
     @FXML
     public void initialize() throws IOException {
 
+        items.clear();;
         itemTable.setPlaceholder(new Label("Enter Items"));
         itemCategory.setCellValueFactory(cellData -> cellData.getValue().getCategoryName());
         itemQuantity.setCellValueFactory(cellData -> cellData.getValue().quantityProperty());
@@ -101,7 +103,16 @@ public class EnterReceiptController extends Returnable{
                 InsertQuery insertItem = InsertQueryFactory.getQuery(Tables.Items);
                 insertItem.execute(i);
             }
+            switchToMainMenu(user);
         }
+    }
+
+    private void switchToMainMenu(User user) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getClassLoader().getResource("FXML/MainMenu.fxml"));
+        MainMenuController controller = new MainMenuController(user);
+        loader.setController(controller);
+        SwitchScene.switchScene(loader, "Main Menu");
     }
 
     private boolean isInputValid()
