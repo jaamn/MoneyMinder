@@ -27,5 +27,6 @@
             <Image url="@../Logo.png" />
          </image>
       </ImageView>
+      <Button fx:id="returnButton" mnemonicParsing="false" text="&lt;-" />
    </children>
 </Pane>

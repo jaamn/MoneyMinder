@@ -14,12 +14,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
-
 import java.time.YearMonth;
 import java.time.ZoneId;
 import java.util.List;
 
-public class MetricsController extends BackToAnalyticsFilter{
+public class MetricsController extends Returnable{
 
     @FXML
     private Text totalSpending;
@@ -90,7 +89,7 @@ public class MetricsController extends BackToAnalyticsFilter{
 
         returnButton.setOnAction(event -> {
             ((Node) (event.getSource())).getScene().getWindow().hide();
-            switchBackToAnalyticsFilter(user);
+            returnToPage(user, "FXML/AnalyticsFilter.fxml", "Analytics filter", "analytics");
         });
     }
 }

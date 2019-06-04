@@ -37,17 +37,17 @@ public class MainMenuController {
         welcomeLabel.setText("Welcome back, " + user.getFirstName());
 
         enterReceiptButton.setOnAction( event -> {
-//            ((Node)(event.getSource())).getScene().getWindow().hide();
+            ((Node)(event.getSource())).getScene().getWindow().hide();
             switchToEnterReceiptScreen();
         });
 
         viewAnalyticsButton.setOnAction( event -> {
-//            ((Node)(event.getSource())).getScene().getWindow().hide();
+            ((Node)(event.getSource())).getScene().getWindow().hide();
             switchToViewAnalyticsScreen();
         });
 
         viewHistoryButton.setOnAction( event -> {
-//            ((Node)(event.getSource())).getScene().getWindow().hide();
+            ((Node)(event.getSource())).getScene().getWindow().hide();
             switchToHistoryScreen();
         });
 

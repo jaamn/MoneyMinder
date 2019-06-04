@@ -11,7 +11,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 
-public class PieChartController extends BackToAnalyticsFilter{
+public class PieChartController extends Returnable{
 
     @FXML
     private PieChart pieChart;
@@ -43,7 +43,7 @@ public class PieChartController extends BackToAnalyticsFilter{
         pieChart.setData(piechartdata);
         returnButton.setOnAction(event -> {
             ((Node) (event.getSource())).getScene().getWindow().hide();
-            switchBackToAnalyticsFilter(user);
+            returnToPage(user, "FXML/AnalyticsFilter.fxml", "Analytics Filter", "analytics");
         });
 
 //        filterButton.setOnAction(event -> {

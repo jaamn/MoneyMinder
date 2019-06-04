@@ -6,12 +6,14 @@ import Models.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import java.io.IOException;
 
-public class HistoryController {
+public class HistoryController extends Returnable{
 
     @FXML
     TableView<Item> itemTable;
@@ -30,6 +32,9 @@ public class HistoryController {
 
     @FXML
     TableColumn<Item, String> itemPrice;
+
+    @FXML
+    Button returnButton;
 
     private User user;
 
@@ -53,6 +58,11 @@ public class HistoryController {
         itemTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         items = Item.getItemsForUser(user);
         itemTable.setItems(items);
+
+        returnButton.setOnAction(event -> {
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+            returnToPage(user, "FXML/MainMenu.fxml", "Main Menu", "main");
+        });
     }
 
 }

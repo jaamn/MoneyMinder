@@ -15,7 +15,7 @@ import javafx.scene.control.Button;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 
-public class LineChartController extends BackToAnalyticsFilter{
+public class LineChartController extends Returnable{
 
     private User user;
 
@@ -42,7 +42,7 @@ public class LineChartController extends BackToAnalyticsFilter{
         loadChart();
         returnButton.setOnAction(event -> {
             ((Node) (event.getSource())).getScene().getWindow().hide();
-            switchBackToAnalyticsFilter(user);
+            returnToPage(user, "FXML/AnalyticsFilter.fxml", "Analytics Filter", "analytics");
         });
     }
 
