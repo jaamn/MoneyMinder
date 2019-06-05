@@ -234,6 +234,8 @@ public class Item {
             {
                 float max = rs.getFloat("aggPrice");
                 String name = rs.getString("name");
+                String date = rs.getString("date");
+                System.err.println(c.getName() + " : " + name + " date: " + date);
                 return new CategoryPricePair(c, name, max);
 
             }

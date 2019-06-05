@@ -29,7 +29,7 @@ public class SelectAggregateFromItems implements SelectQuery {
             Connection dbConn = SQLiteConnector.getInstance().getConnection();
             Statement stmt = dbConn.createStatement();
             StringJoiner sj = new StringJoiner("\n");
-            sj.add("SELECT " + op + "(price) as aggPrice, name FROM Items INNER JOIN Receipts WHERE username = ");
+            sj.add("SELECT " + op + "(price) as aggPrice, name FROM Items NATURAL JOIN Receipts WHERE username = ");
             sj.add("'" + user.getUsername() + "'");
             sj.add("AND cid = " + category.getCid());
             sj.add(";");
@@ -57,7 +57,7 @@ public class SelectAggregateFromItems implements SelectQuery {
             Connection dbConn = SQLiteConnector.getInstance().getConnection();
             Statement stmt = dbConn.createStatement();
             StringJoiner sj = new StringJoiner("\n");
-            sj.add("SELECT " + op + "(price) as aggPrice, name FROM Items INNER JOIN Receipts WHERE username = ");
+            sj.add("SELECT " + op + "(price) as aggPrice, name, date FROM Items NATURAL JOIN Receipts WHERE username = ");
             sj.add("'" + user.getUsername() + "'");
             sj.add("AND cid = " + category.getCid());
             sj.add("AND strftime('%Y', date) = '" + year + "'");
