@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.*;
+import Models.DateContainer.Date;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,8 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
-import java.time.YearMonth;
-import java.time.ZoneId;
 
 public class MetricsController extends Returnable{
 
@@ -57,25 +56,16 @@ public class MetricsController extends Returnable{
 
     public void initialize(){
 
-        ZoneId z = ZoneId.of("America/Los_Angeles");
-        YearMonth ym = YearMonth.now(z);
-        int year = ym.getYear();
-        int month = ym.getMonthValue();
-        String yrStr = Integer.toString(year);
-        String monthStr = Integer.toString(month);
-        if(monthStr.length() == 1){
-            monthStr = "0".concat(monthStr);
-        }
         // filter by month
         float totalMoney = 0;
         for(Category c: Category.getCategories()){
-            totalMoney += Receipt.getSpendingPerCategoryForMonth(user, c, monthStr, yrStr);
-            CategoryPricePair min = Item.getMinPriceForCategoryForMonth(user, c, monthStr, yrStr);
+            totalMoney += Receipt.getSpendingPerCategoryForMonth(user, c, Date.month(), Date.year());
+            CategoryPricePair min = Item.getMinPriceForCategoryForMonth(user, c, Date.month(), Date.year());
             if (min.getPrice() != 0)
             {
                 lsList.add(min);
             }
-            CategoryPricePair max = Item.getMaxPriceForCategoryForMonth(user, c, monthStr, yrStr);
+            CategoryPricePair max = Item.getMaxPriceForCategoryForMonth(user, c, Date.month(), Date.year());
             if (max.getPrice() != 0)
             {
                 msList.add(max);
