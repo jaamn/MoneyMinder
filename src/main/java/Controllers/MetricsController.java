@@ -96,24 +96,6 @@ public class MetricsController extends Returnable{
         LeastSpending.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         LeastSpending.setItems(lsList);
 
-
-        /*
-        for(Category c: Category.getCategories()){
-            MostPrice.setCellValueFactory(cellData -> cellData.getValue().getMaxProperty(user, c));
-        }
-        MostCategoryName.setCellValueFactory(cellData -> cellData.getValue().getCategoryName());
-        MostSpending.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        msList = Item.getItemsForUser(user);
-        MostSpending.setItems(msList);
-
-        for(Category c: Category.getCategories()){
-            LeastPrice.setCellValueFactory(cellData -> cellData.getValue().getMinProperty(user, c));
-        }
-        LeastCategoryName.setCellValueFactory(cellData -> cellData.getValue().getCategoryName());
-        lsList = Item.getItemsForUser(user);
-        LeastSpending.setItems(lsList);
-        */
-
         returnButton.setOnAction(event -> {
             ((Node) (event.getSource())).getScene().getWindow().hide();
             returnToPage(user, "FXML/AnalyticsFilter.fxml", "Analytics filter", "analytics");
