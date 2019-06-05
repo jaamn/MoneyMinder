@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -31,5 +32,10 @@
       <Label layoutX="123.0" layoutY="22.0" text="Add Item" />
       <Button fx:id="submitButton" layoutX="201.0" layoutY="238.0" mnemonicParsing="false" text="Submit" />
       <Button fx:id="cancelButton" layoutX="51.0" layoutY="238.0" mnemonicParsing="false" text="Cancel" />
+      <ImageView fitHeight="67.0" fitWidth="107.0" layoutX="218.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Logo.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

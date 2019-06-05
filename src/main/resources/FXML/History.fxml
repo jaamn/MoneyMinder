@@ -21,10 +21,10 @@
       </TableView>
       <Label layoutX="260.0" layoutY="60.0" text="Item History">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="104.0" fitWidth="194.0" layoutX="454.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="104.0" fitWidth="194.0" layoutX="472.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Logo.png" />
          </image>

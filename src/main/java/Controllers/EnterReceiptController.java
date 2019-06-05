@@ -68,6 +68,7 @@ public class EnterReceiptController extends Returnable{
         itemQuantity.setCellValueFactory(cellData -> cellData.getValue().quantityProperty());
         itemName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         itemPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
+        itemTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         itemTable.setItems(items);
 
         submitButton.setOnAction(event -> {
