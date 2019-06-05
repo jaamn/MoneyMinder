@@ -12,14 +12,25 @@ public class SelectFromStores implements SelectQuery {
 
     public ResultSet execute(Object o)
     {
-        String name = (String) o;
+        String cond;
+        if (o instanceof String)
+        {
+            String name = (String) o;
+            cond = "name = '" + name + "'";
+        }
+        else
+        {
+            int sid = (int) o;
+            cond = "sid = " + sid;
+        }
+
         ResultSet rs = null;
         try
         {
             Connection dbConn = SQLiteConnector.getInstance().getConnection();
             Statement stmt = dbConn.createStatement();
             StringJoiner sj = new StringJoiner("\n");
-            sj.add("SELECT * FROM Stores WHERE name = '" + name + "'");
+            sj.add("SELECT * FROM Stores WHERE " + cond);
             sj.add(";");
             String select = sj.toString();
             System.out.println(select);

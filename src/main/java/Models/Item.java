@@ -1,12 +1,15 @@
 package Models;
 
+import Utils.SQL.QueryFactory.InsertQueryFactory;
 import Utils.SQL.QueryFactory.SelectQueryFactory;
+import Utils.SQL.QueryStatements.InsertQueries.InsertQuery;
 import Utils.SQL.QueryStatements.SelectQueries.SelectQuery;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.StringJoiner;
 
@@ -36,7 +39,6 @@ public class Item {
 
     public Item()
     {
-
     }
 
     public Item(int rid, int cid, String name, float price, int quantity) {
@@ -45,6 +47,12 @@ public class Item {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+    }
+
+    public void insertIntoDB()
+    {
+        InsertQuery insertItem = InsertQueryFactory.getQuery(Tables.Items);
+        insertItem.execute(this);
     }
 
     public int getRid() {
@@ -87,23 +95,27 @@ public class Item {
         this.price = price;
     }
 
-    public static ObservableList<Item> getItemsForUser(User user)
+    public static ObservableList<ItemReceiptPair> getItemsForUser(User user)
     {
         SelectQuery query = SelectQueryFactory.getQuery(Tables.Items);
-        ObservableList<Item> items = FXCollections.observableArrayList();
+        ObservableList<ItemReceiptPair> items = FXCollections.observableArrayList();
         try (ResultSet rs = query.execute(user))
         {
             while (rs.next())
             {
-
                 String name = rs.getString("name");
                 int cid = rs.getInt("cid");
                 int rid = rs.getInt("rid");
                 float price = rs.getFloat("price");
                 int quantity = rs.getInt("quantity");
+                int sid = rs.getInt("sid");
+                String date = rs.getString("date");
 
                 Item item = new Item(rid, cid, name, price, quantity);
-                items.add(item);
+                Receipt receipt = new Receipt(rid, sid, user.getUsername(), Date.valueOf(date));
+                ItemReceiptPair irPair = new ItemReceiptPair(item, receipt);
+
+                items.add(irPair);
             }
         }
         catch (Exception e)
@@ -158,22 +170,8 @@ public class Item {
     public StringProperty ridProperty()
     {
         StringProperty prop = new SimpleStringProperty();
-        prop.setValue(Float.toString(this.rid));
+        prop.setValue(Integer.toString(this.rid));
         return prop;
-    }
-
-    public StringProperty getMinProperty(User user, Category c)
-    {
-        StringProperty minProp = new SimpleStringProperty();
-        minProp.setValue(Float.toString(getMinPriceForCategory(user, c)));
-        return minProp;
-    }
-
-    public StringProperty getMaxProperty(User user, Category c)
-    {
-        StringProperty maxProp = new SimpleStringProperty();
-        maxProp.setValue(Float.toString(getMaxPriceForCategory(user, c)));
-        return maxProp;
     }
 
     public static float getSumPriceForCategory(User user, Category c)
@@ -195,15 +193,16 @@ public class Item {
         return 0;
     }
 
-    public static float getMinPriceForCategory(User user, Category c)
+    public static CategoryPricePair getMinPriceForCategoryForMonth(User user, Category c, String month, String year)
     {
         SelectQuery query = SelectQueryFactory.getAggregateQuery(Tables.Items, "MIN");
-        try (ResultSet rs = query.execute(c, user))
+        try (ResultSet rs = query.execute(c, user, month, year))
         {
             if (rs.next())
             {
-                float sum = rs.getFloat("aggPrice");
-                return sum;
+                float min = rs.getFloat("aggPrice");
+                String name = rs.getString("name");
+                return new CategoryPricePair(c, name, min);
             }
         }
         catch (Exception e)
@@ -211,18 +210,19 @@ public class Item {
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
-        return 0;
+        return null;
     }
 
-    public static float getMaxPriceForCategory(User user, Category c)
+    public static CategoryPricePair getMaxPriceForCategoryForMonth(User user, Category c, String month, String year)
     {
         SelectQuery query = SelectQueryFactory.getAggregateQuery(Tables.Items, "MAX");
-        try (ResultSet rs = query.execute(c, user))
+        try (ResultSet rs = query.execute(c, user, month, year))
         {
             if (rs.next())
             {
-                float sum = rs.getFloat("aggPrice");
-                return sum;
+                float max = rs.getFloat("aggPrice");
+                String name = rs.getString("name");
+                return new CategoryPricePair(c, name, max);
             }
         }
         catch (Exception e)
@@ -230,6 +230,6 @@ public class Item {
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
-        return 0;
+        return null;
     }
 }

@@ -1,8 +1,7 @@
 package Controllers;
 
 import Models.*;
-import Utils.SQL.QueryFactory.InsertQueryFactory;
-import Utils.SQL.QueryStatements.InsertQueries.InsertQuery;
+import Utils.SwitchScene;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -63,11 +62,13 @@ public class EnterReceiptController extends Returnable{
     @FXML
     public void initialize() throws IOException {
 
+        items.clear();;
         itemTable.setPlaceholder(new Label("Enter Items"));
         itemCategory.setCellValueFactory(cellData -> cellData.getValue().getCategoryName());
         itemQuantity.setCellValueFactory(cellData -> cellData.getValue().quantityProperty());
         itemName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         itemPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
+        itemTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         itemTable.setItems(items);
 
         submitButton.setOnAction(event -> {
@@ -86,22 +87,28 @@ public class EnterReceiptController extends Returnable{
 
     private void handleSubmit() {
         if (isInputValid()) {
-            // TODO store field?
             int rid = Integer.parseInt(receiptIDField.getText());
             int sid = Store.getIdFromName(storeField.getText());
             java.sql.Date date = Date.valueOf(dateField.getValue());
             Receipt r = new Receipt(rid, sid, this.user.getUsername(), date);
 
-            InsertQuery insert = InsertQueryFactory.getQuery(Tables.Receipts);
-            insert.execute(r);
+            r.insertIntoDB();
 
             for (Item i : items)
             {
                 i.setRid(rid);
-                InsertQuery insertItem = InsertQueryFactory.getQuery(Tables.Items);
-                insertItem.execute(i);
+                i.insertIntoDB();
             }
+            switchToMainMenu(user);
         }
+    }
+
+    private void switchToMainMenu(User user) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getClassLoader().getResource("FXML/MainMenu.fxml"));
+        MainMenuController controller = new MainMenuController(user);
+        loader.setController(controller);
+        SwitchScene.switchScene(loader, "Main Menu");
     }
 
     private boolean isInputValid()
@@ -125,7 +132,6 @@ public class EnterReceiptController extends Returnable{
         } else {
             // Show the error message.
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            //alert.initOwner(dialogStage);
             alert.setTitle("Invalid Fields");
             alert.setHeaderText("Please correct invalid fields");
             alert.setContentText(errorMessage);
@@ -164,6 +170,4 @@ public class EnterReceiptController extends Returnable{
         }
 
     }
-
-
 }

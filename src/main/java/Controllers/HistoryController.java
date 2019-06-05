@@ -1,7 +1,7 @@
 package Controllers;
 
-import Models.Category;
 import Models.Item;
+import Models.ItemReceiptPair;
 import Models.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,29 +16,35 @@ import java.io.IOException;
 public class HistoryController extends Returnable{
 
     @FXML
-    TableView<Item> itemTable;
+    TableView<ItemReceiptPair> itemTable;
 
     @FXML
-    TableColumn<Item, String> itemName;
+    TableColumn<ItemReceiptPair, String> itemName;
 
     @FXML
-    TableColumn<Item, String> itemQuantity;
+    TableColumn<ItemReceiptPair, String> itemQuantity;
 
     @FXML
-    TableColumn<Item, String> itemCategory;
+    TableColumn<ItemReceiptPair, String> itemCategory;
 
     @FXML
-    TableColumn<Item, String> itemRid;
+    TableColumn<ItemReceiptPair, String> itemRid;
 
     @FXML
-    TableColumn<Item, String> itemPrice;
+    TableColumn<ItemReceiptPair, String> itemPrice;
+
+    @FXML
+    TableColumn<ItemReceiptPair, String> storeCol;
+
+    @FXML
+    TableColumn<ItemReceiptPair, String> dateCol;
 
     @FXML
     Button returnButton;
 
     private User user;
 
-    private ObservableList<Item> items = FXCollections.observableArrayList();
+    private ObservableList<ItemReceiptPair> items = FXCollections.observableArrayList();
 
 
     public HistoryController(User user)
@@ -49,11 +55,14 @@ public class HistoryController extends Returnable{
     @FXML
     public void initialize() throws IOException {
 
-        itemCategory.setCellValueFactory(cellData -> cellData.getValue().getCategoryName());
-        itemQuantity.setCellValueFactory(cellData -> cellData.getValue().quantityProperty());
-        itemName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        itemPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
-        itemRid.setCellValueFactory(cellData -> cellData.getValue().ridProperty());
+        items.clear();
+        itemCategory.setCellValueFactory(cellData -> cellData.getValue().getItem().getCategoryName());
+        itemQuantity.setCellValueFactory(cellData -> cellData.getValue().getItem().quantityProperty());
+        itemName.setCellValueFactory(cellData -> cellData.getValue().getItem().nameProperty());
+        itemPrice.setCellValueFactory(cellData -> cellData.getValue().getItem().priceProperty());
+        itemRid.setCellValueFactory(cellData -> cellData.getValue().getItem().ridProperty());
+        storeCol.setCellValueFactory(cellData -> cellData.getValue().getReceipt().getStoreName());
+        dateCol.setCellValueFactory(cellData -> cellData.getValue().getReceipt().getDateProp());
 
         itemTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         items = Item.getItemsForUser(user);
@@ -64,5 +73,4 @@ public class HistoryController extends Returnable{
             returnToPage(user, "FXML/MainMenu.fxml", "Main Menu", "main");
         });
     }
-
 }

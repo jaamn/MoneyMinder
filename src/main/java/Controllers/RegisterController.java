@@ -59,5 +59,4 @@ public class RegisterController {
         loader.setLocation(getClass().getClassLoader().getResource("FXML/Login.fxml"));
         SwitchScene.switchScene(loader, "Login");
     }
-
 }

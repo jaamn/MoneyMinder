@@ -25,7 +25,7 @@ public class SelectFromReceipts implements SelectQuery {
             Connection dbConn = SQLiteConnector.getInstance().getConnection();
             Statement stmt = dbConn.createStatement();
             StringJoiner sj = new StringJoiner("\n");
-            sj.add("SELECT SUM(price) as sumPrice FROM Items INNER JOIN Receipts WHERE username = ");
+            sj.add("SELECT SUM(price) as sumPrice FROM Items NATURAL JOIN Receipts WHERE username = ");
             sj.add("'" + user.getUsername() + "'");
             sj.add("AND cid = " + category.getCid());
             sj.add("AND strftime('%Y', date) = '" + year + "'");
@@ -57,7 +57,7 @@ public class SelectFromReceipts implements SelectQuery {
             Connection dbConn = SQLiteConnector.getInstance().getConnection();
             Statement stmt = dbConn.createStatement();
             StringJoiner sj = new StringJoiner("\n");
-            sj.add("SELECT SUM(price) as sumPrice FROM Items INNER JOIN Receipts WHERE username = ");
+            sj.add("SELECT SUM(price) as sumPrice FROM Items NATURAL JOIN Receipts WHERE username = ");
             sj.add("'" + user.getUsername() + "'");
             sj.add("AND strftime('%Y', date) = '" + year + "'");
             sj.add("AND strftime('%m', date) = '" + month + "'");

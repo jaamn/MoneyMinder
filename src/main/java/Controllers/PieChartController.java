@@ -45,48 +45,15 @@ public class PieChartController extends Returnable{
             ((Node) (event.getSource())).getScene().getWindow().hide();
             returnToPage(user, "FXML/AnalyticsFilter.fxml", "Analytics Filter", "analytics");
         });
-
-//        filterButton.setOnAction(event -> {
-//            filterEvent(piechartdata);
-//        });
     }
-
-//    private void filterEvent(ObservableList piechartdata){
-//        FilteredList filteredItems = new FilteredList(piechartdata);
-//        filteredItems.predicateProperty().bind(Bindings.createObjectBinding(() -> {
-//                    LocalDate minDate = startDate.getValue();
-//                    LocalDate maxDate = endDate.getValue();
-//
-//                    // get final values != null
-//                    final LocalDate finalMin = minDate == null ? LocalDate.MIN : minDate;
-//                    final LocalDate finalMax = maxDate == null ? LocalDate.MAX : maxDate;
-//
-//                    // values for openDate need to be in the interval [finalMin, finalMax]
-//                    return ti -> !finalMin.isAfter(piechartdata.getOpenDate()) && !finalMax.isBefore(ti.getOpenDate());
-//                },
-//                startDate.valueProperty(),
-//                endDate.valueProperty()));
-//    }
 
     private void loadData(){
 
-        // TODO
-        // Item.getSumPriceForCategory(user, c);
-        // will return a sum of the prices of all items in the Category c for the User user
-
-        // Categories: Category.getCategories();
-        // will return a list of all categories in the database
-
-        // Items: Item.getItemsForUser(user);
-        // will return a list of all items for a User user
-
         piechartdata = FXCollections.observableArrayList();
-        //EXAMPLE:
         for (Category c : Category.getCategories())
         {
             float total = Item.getSumPriceForCategory(user, c);
             piechartdata.add(new PieChart.Data(c.toString(), total));
-            System.err.println(c.getName() + ": " + total);
         }
     }
 }

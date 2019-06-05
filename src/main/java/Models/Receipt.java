@@ -1,7 +1,11 @@
 package Models;
 
+import Utils.SQL.QueryFactory.InsertQueryFactory;
 import Utils.SQL.QueryFactory.SelectQueryFactory;
+import Utils.SQL.QueryStatements.InsertQueries.InsertQuery;
 import Utils.SQL.QueryStatements.SelectQueries.SelectQuery;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -24,14 +28,41 @@ public class Receipt {
     public static String fieldsForTableCreation()
     {
         StringJoiner sj = new StringJoiner(",\n\t");
-        sj.add("\trid INTEGER PRIMARY KEY");
+        sj.add("\trid INTEGER ");
         sj.add("sid INTEGER");
         sj.add("username STRING");
         sj.add("date DATE");
         sj.add("FOREIGN KEY(sid) REFERENCES Stores(sid)");
         sj.add("FOREIGN KEY(username) REFERENCES Users(username)");
+        sj.add("PRIMARY KEY(rid, username)");
 
         return sj.toString();
+    }
+
+    public StringProperty getDateProp()
+    {
+        return new SimpleStringProperty(this.date.toString());
+    }
+
+    public StringProperty getStoreName()
+    {
+        StringProperty prop = new SimpleStringProperty();
+        SelectQuery query = SelectQueryFactory.getQuery(Tables.Stores);
+        try (ResultSet rs = query.execute(this.sid))
+        {
+            if (rs.next())
+            {
+                String name = rs.getString("name");
+                prop.setValue(name);
+                return prop;
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
     public String getInsertFields()
@@ -43,6 +74,12 @@ public class Receipt {
         sj.add("\t'" + this.date + "'");
 
         return sj.toString();
+    }
+
+    public void insertIntoDB()
+    {
+        InsertQuery insert = InsertQueryFactory.getQuery(Tables.Receipts);
+        insert.execute(this);
     }
 
     public static float getSpendingForMonth(User user, String month, String year)

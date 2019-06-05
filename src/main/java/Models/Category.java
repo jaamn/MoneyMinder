@@ -1,6 +1,8 @@
 package Models;
 
+import Utils.SQL.QueryFactory.InsertQueryFactory;
 import Utils.SQL.QueryFactory.SelectQueryFactory;
+import Utils.SQL.QueryStatements.InsertQueries.InsertQuery;
 import Utils.SQL.QueryStatements.SelectQueries.SelectQuery;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -25,6 +27,22 @@ public class Category {
     @Override
     public String toString() {
         return name;
+    }
+
+    public void insertIntoDB()
+    {
+        InsertQuery insert = InsertQueryFactory.getQuery(Tables.Categories);
+        insert.execute(this);
+    }
+
+    public static void insertPresetCategoriesIntoDB()
+    {
+        ObservableList<Category> categories = Category.getCategories();
+        if (categories.size() == 0) {
+            for (Category c : Category.getPresetCategories()) {
+                c.insertIntoDB();
+            }
+        }
     }
 
     public static String fieldsForTableCreation()

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -10,8 +11,16 @@
       <Button fx:id="pieChartButton" layoutX="258.0" layoutY="146.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="94.0" text="Pie Chart" />
       <Button fx:id="lineGraphButton" layoutX="258.0" layoutY="216.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="94.0" text="Line Graph" />
       <Button fx:id="metricsButton" layoutX="258.0" layoutY="285.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="94.0" text="Metrics" />
-      <Label layoutX="261.0" layoutY="44.0" text="View Analytics" />
+      <Label layoutX="256.0" layoutY="42.0" text="View Analytics">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
       <Label layoutX="168.0" layoutY="88.0" text="Choose how you would like to see your spending" />
       <Button fx:id="returnButton" mnemonicParsing="false" text="&lt;-" />
+      <ImageView fitHeight="104.0" fitWidth="194.0" layoutX="453.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Logo.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
