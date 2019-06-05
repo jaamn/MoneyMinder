@@ -163,7 +163,7 @@ public class Item {
     public StringProperty ridProperty()
     {
         StringProperty prop = new SimpleStringProperty();
-        prop.setValue(Float.toString(this.rid));
+        prop.setValue(Integer.toString(this.rid));
         return prop;
     }
 

@@ -21,8 +21,8 @@
       </TableView>
       <TableView fx:id="LeastSpending" layoutX="328.0" layoutY="167.0" prefHeight="200.0" prefWidth="220.0">
         <columns>
-          <TableColumn fx:id="LeastCategoryName" prefWidth="122.0" text="Category" />
-          <TableColumn fx:id="LeastItem" prefWidth="54.0" text="Item" />
+          <TableColumn fx:id="LeastCategoryName" prefWidth="130.0" text="Category" />
+          <TableColumn fx:id="LeastItem" prefWidth="46.0" text="Item" />
             <TableColumn fx:id="LeastPrice" prefWidth="49.0" text="Price" />
         </columns>
       </TableView>
