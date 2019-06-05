@@ -54,7 +54,6 @@ public class PieChartController extends Returnable{
         {
             float total = Item.getSumPriceForCategory(user, c);
             piechartdata.add(new PieChart.Data(c.toString(), total));
-            //System.err.println(c.getName() + ": " + total);
         }
     }
 }

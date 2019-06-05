@@ -102,7 +102,6 @@ public class Item {
                 float price = rs.getFloat("price");
                 int quantity = rs.getInt("quantity");
                 int sid = rs.getInt("sid");
-                //java.sql.Date date = rs.getDate("date");
                 String date = rs.getString("date");
 
                 Item item = new Item(rid, cid, name, price, quantity);
@@ -110,8 +109,6 @@ public class Item {
                 ItemReceiptPair irPair = new ItemReceiptPair(item, receipt);
 
                 items.add(irPair);
-                //Item item = new Item(rid, cid, name, price, quantity);
-                //items.add(item);
             }
         }
         catch (Exception e)

@@ -23,5 +23,4 @@ public class SwitchScene {
         stage.setResizable(false);
         stage.show();
     }
-
 }

@@ -1,6 +1,5 @@
 package Utils.SQL.QueryStatements.SelectQueries;
 
-import Models.Category;
 import Models.User;
 import Utils.SQL.JDBC.SQLiteConnector;
 

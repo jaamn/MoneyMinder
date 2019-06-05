@@ -1,6 +1,5 @@
 package Controllers;
 
-import Models.Category;
 import Models.Item;
 import Models.ItemReceiptPair;
 import Models.User;
@@ -74,5 +73,4 @@ public class HistoryController extends Returnable{
             returnToPage(user, "FXML/MainMenu.fxml", "Main Menu", "main");
         });
     }
-
 }

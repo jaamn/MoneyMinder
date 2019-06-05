@@ -13,7 +13,5 @@ public interface SelectQuery {
     ResultSet execute(Object o);
 
     ResultSet execute();
-
-
-
+    
 }

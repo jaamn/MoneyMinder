@@ -136,7 +136,6 @@ public class EnterReceiptController extends Returnable{
         } else {
             // Show the error message.
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            //alert.initOwner(dialogStage);
             alert.setTitle("Invalid Fields");
             alert.setHeaderText("Please correct invalid fields");
             alert.setContentText(errorMessage);
@@ -175,6 +174,4 @@ public class EnterReceiptController extends Returnable{
         }
 
     }
-
-
 }
