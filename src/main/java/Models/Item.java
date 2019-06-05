@@ -1,6 +1,8 @@
 package Models;
 
+import Utils.SQL.QueryFactory.InsertQueryFactory;
 import Utils.SQL.QueryFactory.SelectQueryFactory;
+import Utils.SQL.QueryStatements.InsertQueries.InsertQuery;
 import Utils.SQL.QueryStatements.SelectQueries.SelectQuery;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -37,7 +39,6 @@ public class Item {
 
     public Item()
     {
-
     }
 
     public Item(int rid, int cid, String name, float price, int quantity) {
@@ -46,6 +47,12 @@ public class Item {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+    }
+
+    public void insertIntoDB()
+    {
+        InsertQuery insertItem = InsertQueryFactory.getQuery(Tables.Items);
+        insertItem.execute(this);
     }
 
     public int getRid() {

@@ -1,8 +1,6 @@
 package Controllers;
 
 import Models.*;
-import Utils.SQL.QueryFactory.InsertQueryFactory;
-import Utils.SQL.QueryStatements.InsertQueries.InsertQuery;
 import Utils.SwitchScene;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -88,20 +86,17 @@ public class EnterReceiptController extends Returnable{
 
     private void handleSubmit() {
         if (isInputValid()) {
-            // TODO store field?
             int rid = Integer.parseInt(receiptIDField.getText());
             int sid = Store.getIdFromName(storeField.getText());
             java.sql.Date date = Date.valueOf(dateField.getValue());
             Receipt r = new Receipt(rid, sid, this.user.getUsername(), date);
 
-            InsertQuery insert = InsertQueryFactory.getQuery(Tables.Receipts);
-            insert.execute(r);
+            r.insertIntoDB();
 
             for (Item i : items)
             {
                 i.setRid(rid);
-                InsertQuery insertItem = InsertQueryFactory.getQuery(Tables.Items);
-                insertItem.execute(i);
+                i.insertIntoDB();
             }
             switchToMainMenu(user);
         }

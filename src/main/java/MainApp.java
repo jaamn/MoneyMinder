@@ -36,19 +36,18 @@ public class MainApp extends Application {
             SwitchScene.switchScene(loader, "Login");
     }
 
-    private void createTables() {
+    public void createTableInDB(Tables t)
+    {
+        CreateTableQuery query = CreateTableQueryFactory.getQuery(t);
+        query.execute();
+    }
+
+    public void createTables() {
         for (Tables t : Tables.values()) {
-            CreateTableQuery query = CreateTableQueryFactory.getQuery(t);
-            query.execute();
+            createTableInDB(t);
         }
 
-        ObservableList<Category> categories = Category.getCategories();
-        if (categories.size() == 0) {
-            for (Category c : Category.getPresetCategories()) {
-                InsertQuery insert = InsertQueryFactory.getQuery(Tables.Categories);
-                insert.execute(c);
-            }
-        }
+        Category.insertPresetCategoriesIntoDB();
     }
 }
 

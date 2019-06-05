@@ -1,6 +1,8 @@
 package Models;
 
+import Utils.SQL.QueryFactory.InsertQueryFactory;
 import Utils.SQL.QueryFactory.SelectQueryFactory;
+import Utils.SQL.QueryStatements.InsertQueries.InsertQuery;
 import Utils.SQL.QueryStatements.SelectQueries.SelectQuery;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -72,6 +74,12 @@ public class Receipt {
         sj.add("\t'" + this.date + "'");
 
         return sj.toString();
+    }
+
+    public void insertIntoDB()
+    {
+        InsertQuery insert = InsertQueryFactory.getQuery(Tables.Receipts);
+        insert.execute(this);
     }
 
     public static float getSpendingForMonth(User user, String month, String year)
