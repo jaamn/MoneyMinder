@@ -35,7 +35,8 @@ public class RegisterController {
         registerButton.setOnAction( event -> {
             if (usernameField.getText().isEmpty() || passwordField.getText().isEmpty() || firstnameField.getText().isEmpty() || lastnameField.getText().isEmpty())
             {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all fields\n");
+                Alert alert = new Alert(Alert.AlertType.ERROR,
+                        "Please fill in all fields.\n");
                 alert.showAndWait();
             }
             else {
@@ -47,7 +48,7 @@ public class RegisterController {
                 }
                 else
                 {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "Error\n");
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "This user already exists.\n");
                     alert.showAndWait();
                 }
             }

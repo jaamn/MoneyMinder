@@ -38,7 +38,9 @@ public class LoginController {
             }
             else
             {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Error\n");
+                Alert alert = new Alert(Alert.AlertType.ERROR,
+                        "Please fill in all fields.\n" +
+                                "Make sure your username and password are correct.");
                 alert.showAndWait();
             }
         });
