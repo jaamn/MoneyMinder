@@ -11,7 +11,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
 
+import java.util.Calendar;
+
 public class MetricsController extends Returnable{
+    String curMonth = "06";//DateContainer.Date.month(String.valueOf(Calendar.getInstance().get(Calendar.MONTH)));
 
     @FXML
     private Text totalSpending;
@@ -57,15 +60,16 @@ public class MetricsController extends Returnable{
     public void initialize(){
 
         // filter by month
+        System.err.println(curMonth);
         float totalMoney = 0;
         for(Category c: Category.getCategories()){
-            totalMoney += Receipt.getSpendingPerCategoryForMonth(user, c, Date.month(), Date.year());
-            CategoryPricePair min = Item.getMinPriceForCategoryForMonth(user, c, Date.month(), Date.year());
+            totalMoney += Receipt.getSpendingPerCategoryForMonth(user, c, curMonth, Date.year());
+            CategoryPricePair min = Item.getMinPriceForCategoryForMonth(user, c, curMonth, Date.year());
             if (min.getPrice() != 0)
             {
                 lsList.add(min);
             }
-            CategoryPricePair max = Item.getMaxPriceForCategoryForMonth(user, c, Date.month(), Date.year());
+            CategoryPricePair max = Item.getMaxPriceForCategoryForMonth(user, c, curMonth, Date.year());
             if (max.getPrice() != 0)
             {
                 msList.add(max);

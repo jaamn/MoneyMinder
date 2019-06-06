@@ -18,30 +18,30 @@ public final class DateContainer {
         }
         public static String month() { return month(month); }
         public static String month(String month){
-            switch (month) {
-                case "January":
+            switch (month.toLowerCase()) {
+                case "january":
                     return "01";
-                case "February":
+                case "february":
                     return "02";
-                case "March":
+                case "march":
                     return "03";
-                case "April":
+                case "april":
                     return "04";
-                case "May":
+                case "may":
                     return "05";
-                case "June":
+                case "june":
                     return "06";
-                case "July":
+                case "july":
                     return "07";
-                case "August":
+                case "august":
                     return "08";
-                case "September":
+                case "september":
                     return "09";
-                case "October":
+                case "october":
                     return "10";
-                case "November":
+                case "november":
                     return "11";
-                case "December":
+                case "december":
                     return "12";
                 default:
                     return "00";
