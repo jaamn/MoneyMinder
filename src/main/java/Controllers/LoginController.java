@@ -4,6 +4,7 @@ import Models.User;
 import Utils.SwitchScene;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -35,6 +36,7 @@ public class LoginController {
             if (user != null)
             {
                 switchToMainMenu(user);
+                ((Node) (event.getSource())).getScene().getWindow().hide();
             }
             else
             {
@@ -47,6 +49,7 @@ public class LoginController {
 
         registerButton.setOnAction( event -> {
             switchToRegisterScene();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
         });
     }
 
