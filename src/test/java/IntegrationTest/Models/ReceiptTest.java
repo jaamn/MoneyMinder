@@ -65,7 +65,6 @@ class ReceiptTest {
         Receipt r = new Receipt(rid, sid, "Test1", Date.valueOf("2019-06-06"));
         InsertQuery insertR = InsertQueryFactory.getQuery(Tables.Receipts);
         insertR.execute(r);
-        //System.out.println(r.getStoreName() + "OVER HERE");
 
         Assertions.assertEquals("Village Market", r.getStoreName().getValue());
     }

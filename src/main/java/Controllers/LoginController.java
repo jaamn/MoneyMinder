@@ -4,6 +4,7 @@ import Models.User;
 import Utils.SwitchScene;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -35,16 +36,20 @@ public class LoginController {
             if (user != null)
             {
                 switchToMainMenu(user);
+                ((Node) (event.getSource())).getScene().getWindow().hide(); /* better navigation */
             }
             else
             {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Error\n");
+                Alert alert = new Alert(Alert.AlertType.ERROR,
+                        "Please fill in all fields.\n" +
+                                "Make sure your username and password are correct.");
                 alert.showAndWait();
             }
         });
 
         registerButton.setOnAction( event -> {
             switchToRegisterScene();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
         });
     }
 
