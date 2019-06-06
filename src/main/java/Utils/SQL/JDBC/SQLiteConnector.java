@@ -1,5 +1,7 @@
 package Utils.SQL.JDBC;
 
+import org.sqlite.SQLiteConfig;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
@@ -23,7 +25,9 @@ public class SQLiteConnector {
     }
 
     private Connection establishConnection() throws SQLException {
-        return DriverManager.getConnection(Constants.dbUrl);
+        SQLiteConfig config = new SQLiteConfig();
+        config.setReadOnly(false);
+        return DriverManager.getConnection(Constants.dbUrl, config.toProperties());
     }
 
     public static void main (String[] args) throws ClassNotFoundException, SQLException {
