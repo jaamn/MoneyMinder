@@ -35,6 +35,11 @@ class CategoryTest {
 
     @Test
     void insertIntoDB() {
+        /*  The following Integration Test tests insertIntoDB(),
+            - a function in the class Category
+            - integration of SQL operation, enum values, factory operation
+            - inserts specific category into database
+         */
         Category c = new Category(7, "Gifts");
         InsertQuery insert = InsertQueryFactory.getQuery(Tables.Categories);
         Assertions.assertTrue(insert.execute(c));
