@@ -76,6 +76,8 @@ class ReceiptTest {
 
     @Test
     void insertIntoDB() {
+        System.err.println("insertIntoDB ***********");
+
         File database = new File("database.db");
         if(database.exists()) {
             System.out.println("DATABASE EXISTS");
