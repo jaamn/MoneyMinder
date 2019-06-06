@@ -76,6 +76,10 @@ class ReceiptTest {
 
     @Test
     void insertIntoDB() {
+        File database = new File("database.db");
+        if(database.exists()) {
+            System.out.println("DATABASE EXISTS");
+        }
         Receipt r = new Receipt(2, 2, "Test2", Date.valueOf("2019-06-06"));
         InsertQuery insert = InsertQueryFactory.getQuery(Tables.Receipts);
         Assertions.assertTrue(insert.execute(r));
