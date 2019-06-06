@@ -4,5 +4,8 @@ install:
   
 # script: "mvn test && mvn verify"  
 
-# services:
-#   sqlite3
+env:
+  - DB=sqlite
+
+#services:
+#  - sqlite3
