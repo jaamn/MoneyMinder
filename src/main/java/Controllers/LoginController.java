@@ -33,10 +33,10 @@ public class LoginController {
 
         loginButton.setOnAction( event -> {
             user = verifyUser(usernameField.getText(), passwordField.getText());
-            if (user != null) 
+            if (user != null)
             {
                 switchToMainMenu(user);
-                ((Node) (event.getSource())).getScene().getWindow().hide();
+                ((Node) (event.getSource())).getScene().getWindow().hide(); /* better navigation */
             }
             else
             {
