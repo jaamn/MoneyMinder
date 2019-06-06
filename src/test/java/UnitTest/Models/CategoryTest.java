@@ -15,7 +15,7 @@ public class CategoryTest {
 
     @BeforeEach
     void setUp() {
-        File database = new File((System.getProperty("user.dir") + "\\database.db"));
+        File database = new File("database.db");
         if(database.exists()) {
             database.delete();
         }
