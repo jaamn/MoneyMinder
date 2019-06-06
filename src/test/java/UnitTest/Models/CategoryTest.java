@@ -16,7 +16,9 @@ public class CategoryTest {
     @BeforeEach
     void setUp() {
         File database = new File((System.getProperty("user.dir") + "\\database.db"));
-        database.delete();
+        if(database.exists()) {
+            database.delete();
+        }
         Main.MainApp M = new Main.MainApp();
         M.initDB();
     }
@@ -24,39 +26,43 @@ public class CategoryTest {
     @AfterEach
     void tearDown() {
         File database = new File((System.getProperty("user.dir") + "\\database.db"));
-        database.delete();
+        if(database.exists()) {
+            database.delete();
+        }
     }
 
+    /* can't override */
 //    @Test
 //    void toString() {
 //    }
 
     @Test
-    void insertIntoDB() {
+    void insertIntoDB() { //Integration
         Category c = new Category(7, "Gifts");
         InsertQuery insert = InsertQueryFactory.getQuery(Tables.Categories);
         Assertions.assertTrue(insert.execute(c));
     }
 
-    @Test
-    void insertPresetCategoriesIntoDB() {
-    }
-
-    @Test
-    void fieldsForTableCreation() {
-    }
-
-    @Test
-    void getCid() {
-    }
-
-    @Test
-    void getName() {
-    }
-
-    @Test
-    void getCategories() {
-    }
+    /* covered by others */
+//    @Test
+//    void insertPresetCategoriesIntoDB() {
+//    }
+//
+//    @Test
+//    void fieldsForTableCreation() {
+//    }
+//
+//    @Test
+//    void getCid() {
+//    }
+//
+//    @Test
+//    void getName() {
+//    }
+//
+//    @Test
+//    void getCategories() {
+//    }
 
     @Test
     void getPresetCategories() {
