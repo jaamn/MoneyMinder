@@ -3,3 +3,6 @@ install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
   
 script: "mvn test && mvn verify"  
+
+services:
+  sqlite3
