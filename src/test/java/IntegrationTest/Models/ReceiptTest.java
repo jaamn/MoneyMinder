@@ -76,7 +76,13 @@ class ReceiptTest {
 
     @Test
     void insertIntoDB() {
+        File currentDirectory = new File(new File(".").getAbsolutePath());
+        //System.out.println(currentDirectory.getCanonicalPath());
+        System.out.println("*** curDir: " + currentDirectory.getAbsolutePath());
+
         System.err.println("insertIntoDB ***********");
+        Main.MainApp M = new Main.MainApp();
+        M.initDB();
 
         File database = new File("database.db");
         if(database.exists()) {
@@ -85,8 +91,6 @@ class ReceiptTest {
         else
         {
             System.err.println("DATABASE DOESNT EXIST");
-            Main.MainApp M = new Main.MainApp();
-            M.initDB();
 
         }
         Receipt r = new Receipt(2, 2, "Test2", Date.valueOf("2019-06-06"));
