@@ -1,7 +1,6 @@
 package UnitTest.Models;
 
 import Models.Receipt;
-import Models.Store;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
