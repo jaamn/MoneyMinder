@@ -24,12 +24,16 @@ public class InsertIntoReceipts implements InsertQuery {
             String insert = sj.toString();
             System.out.println(insert);
             stmt.executeUpdate(insert);
-
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             System.err.println(e.getMessage());
             return false;
-        }
+        } /*catch (SQLException s) {
+            System.err.println(s.getLocalizedMessage());
+            if (s.getErrorCode() == 19) return true; // PRIMARY KEY constraint failed (how do we check which key?)
+            // UNIQUE KEY failure is okay^ (normally duplicate will not be inserted, so false)
+            return false;
+        }*/
         return true;
     }
 }
