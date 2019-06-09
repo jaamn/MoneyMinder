@@ -26,19 +26,17 @@ class ReceiptTest {
     @BeforeEach
     void setUp() {
         File database = new File("database.db");
-        if(database.exists()) {
-            database.delete();
-        }
         Main.MainApp M = new Main.MainApp();
+        if(database.exists()) {
+            M.deleteTables();
+        }
         M.initDB();
     }
 
     @AfterEach
     void tearDown() {
-        File database = new File("database.db");
-        if(database.exists()) {
-            database.delete();
-        }
+        Main.MainApp M = new Main.MainApp();
+        M.deleteTables();
     }
 
 
