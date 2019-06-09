@@ -1,4 +1,4 @@
-package IntegrationTest;
+package IntegrationTest.Models;
 
 import Models.*;
 import Utils.SQL.QueryFactory.InsertQueryFactory;
@@ -34,8 +34,10 @@ class ItemIT {
 
     @AfterEach
     void tearDown() throws Exception{
-        Path fileToDeletePath = Paths.get("database.db");
-        Files.delete(fileToDeletePath);
+        File database = new File("database.db");
+        if(database.exists()) {
+            database.delete();
+        }
     }
 
     //integration
