@@ -1,4 +1,4 @@
-package IntegrationTest;
+package IntegrationTest.Models;
 
 import Models.*;
 import Utils.SQL.QueryFactory.InsertQueryFactory;

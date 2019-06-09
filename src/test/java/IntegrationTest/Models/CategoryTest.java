@@ -27,7 +27,7 @@ class CategoryTest {
 
     @AfterEach
     void tearDown() {
-        File database = new File((System.getProperty("user.dir") + "\\database.db"));
+        File database = new File("database.db");
         if(database.exists()) {
             database.delete();
         }
