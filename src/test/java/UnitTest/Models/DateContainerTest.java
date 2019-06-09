@@ -52,7 +52,6 @@ class DateContainerTest {
         Assertions.assertEquals("12", DateContainer.Date.month(("December").toLowerCase()));
         Assertions.assertEquals("12", DateContainer.Date.month(("December").toUpperCase()));
         Assertions.assertEquals("00", DateContainer.Date.month("Lol"));
-
     }
 
     @Test
