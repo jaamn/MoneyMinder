@@ -5,10 +5,10 @@ import java.util.Calendar;
 
 public final class DateContainer {
     public static class Date {
-        static DateFormatSymbols dfs = new DateFormatSymbols(); // encapsulate date-time formatting data
-        static String[] months = dfs.getMonths(); // extract the months
-        static String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR)); // extract the current year
-        static String month = String.format("%02d", (Calendar.getInstance().get(Calendar.MONTH)+1)); // extract the current month
+        private static DateFormatSymbols dfs = new DateFormatSymbols(); // encapsulate date-time formatting data
+        private static String[] months = dfs.getMonths(); // extract the months
+        private static String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR)); // extract the current year
+        private static String month = String.format("%02d", (Calendar.getInstance().get(Calendar.MONTH)+1)); // extract the current month
 
         public static String[] months(){
             return months;
