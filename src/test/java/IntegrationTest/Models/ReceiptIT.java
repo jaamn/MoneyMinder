@@ -21,7 +21,7 @@ import java.sql.ResultSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ReceiptTest {
+class ReceiptIT {
 
     @BeforeEach
     void setUp() {
