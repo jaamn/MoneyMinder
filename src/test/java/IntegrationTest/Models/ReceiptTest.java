@@ -41,15 +41,6 @@ class ReceiptTest {
         }
     }
 
-
-    @Test
-    void fieldsForTableCreation() {
-    }
-
-    @Test
-    void getDateProp() {
-    }
-
     @Test
     void getStoreName() {
         int rid = Integer.parseInt("1");
@@ -67,11 +58,6 @@ class ReceiptTest {
         insertR.execute(r);
 
         Assertions.assertEquals("Village Market", r.getStoreName().getValue());
-    }
-
-    @Test
-    void getInsertFields() {
-
     }
 
     @Test
