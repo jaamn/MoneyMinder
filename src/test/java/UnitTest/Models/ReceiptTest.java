@@ -9,9 +9,9 @@ import java.sql.Date;
 
 
 class ReceiptTest {
-    int rid = Integer.parseInt("1");
-    int sid = Store.getIdFromName("Village Market");
-    Receipt r = new Receipt(rid, sid, "Test1", Date.valueOf("2019-06-06"));
+    int rid = 1;
+    int sid = 1;
+    Receipt r = new Receipt(1, 1, "Test1", Date.valueOf("2019-06-06"));
 
     @Test
     void fieldsForTableCreation() {
