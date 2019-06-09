@@ -47,10 +47,10 @@ class StoreIT {
         Assertions.assertNotNull(selectQuery, "select query object has been created to select store");
         InsertQuery insertQuery = InsertQueryFactory.getQuery(Tables.Stores);
         insertQuery.execute(storeName);
+
         int result = Store.getIdFromName(storeName);
         Assertions.assertEquals(1, result);
 
-        insertQuery.execute(storeName2);
         int result2 = Store.getIdFromName(storeName2);
         Assertions.assertEquals(2, result2);
     }

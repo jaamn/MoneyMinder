@@ -1,6 +1,5 @@
 package IntegrationTest.Models;
 
-import Main.MainApp;
 import Models.*;
 import Utils.SQL.QueryFactory.InsertQueryFactory;
 import Utils.SQL.QueryFactory.SelectQueryFactory;
@@ -15,9 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Date;
 import java.sql.ResultSet;
 
@@ -43,10 +39,7 @@ class ItemIT {
     @Test
     void insertIntoDB(){
         Item item = new Item(1, 1, "IceCream", (float)5.0, 1);
-        Item item2 = new Item();
-        InsertQuery insert = InsertQueryFactory.getQuery(Tables.Items);
-        Assertions.assertTrue(insert.execute(item));
-        Assertions.assertTrue(insert.execute(item2));
+        item.insertIntoDB();
     }
 
 
@@ -55,15 +48,31 @@ class ItemIT {
     }
 
     @Test
-    void getItemsForUser(){
+    void getItemsForUser() {
+        String str = "2019-06-01";
+        Date date = Date.valueOf(str);
         User user = new User("test", "test", "test", "1111");
+        InsertQuery insertUser = InsertQueryFactory.getQuery(Tables.Users);
+        insertUser.execute(user);
+
+        Receipt receipt = new Receipt(1, 1, "test", date);
+        InsertQuery insertReceipt = InsertQueryFactory.getQuery(Tables.Receipts);
+        insertReceipt.execute(receipt);
+
         Item item = new Item(1, 1, "IceCream", (float)5.0, 1);
+        Item item2 = new Item(1, 1, "Snacks", (float)10.0, 2);
         InsertQuery insertItem = InsertQueryFactory.getQuery(Tables.Items);
         insertItem.execute(item);
+        insertItem.execute(item2);
+
         SelectQuery selectQuery = SelectQueryFactory.getQuery(Tables.Items);
-        ObservableList<ItemReceiptPair> items = FXCollections.observableArrayList();
         Assertions.assertNotNull(selectQuery, "select query object for item is created");
+
+        ObservableList<ItemReceiptPair> items = FXCollections.observableArrayList();
         Assertions.assertNotNull(items, "items list to insert is created");
+
+        ResultSet rs = selectQuery.execute(user);
+        Assertions.assertNotNull(rs, "can select query from user");
         Assertions.assertNotNull(Item.getItemsForUser(user), "getItemsForUser returns list object");
     }
 
@@ -128,5 +137,73 @@ class ItemIT {
         CategoryPricePair categoryPricePair = Item.getMaxPriceForCategoryForMonth(user, c, "06", "2019");
         Assertions.assertNotNull(categoryPricePair);
         Assertions.assertEquals(15.0, categoryPricePair.getPrice());
+    }
+
+    @Test
+    void getRid() {
+    }
+
+    @Test
+    void getCid() {
+    }
+
+    @Test
+    void getQuantity() {
+    }
+
+    @Test
+    void getName() {
+    }
+
+    @Test
+    void getPrice() {
+    }
+
+    @Test
+    void setCid() {
+    }
+
+    @Test
+    void setQuantity() {
+    }
+
+    @Test
+    void setRid() {
+    }
+
+    @Test
+    void setName() {
+    }
+
+    @Test
+    void setPrice() {
+    }
+
+    @Test
+    void quantityProperty() {
+        Item item = new Item(1, 1, "IceCream", (float)5.0, 1);
+        StringProperty prop = item.quantityProperty();
+        Assertions.assertEquals("1", prop.get());
+    }
+
+    @Test
+    void nameProperty() {
+        Item item = new Item(1, 1, "IceCream", (float)5.0, 1);
+        StringProperty prop = item.nameProperty();
+        Assertions.assertEquals("IceCream", prop.get());
+    }
+
+    @Test
+    void priceProperty() {
+        Item item = new Item(1, 1, "IceCream", (float)5.0, 1);
+        StringProperty prop = item.priceProperty();
+        Assertions.assertEquals("5.0", prop.get());
+    }
+
+    @Test
+    void ridProperty() {
+        Item item = new Item(1, 1, "IceCream", (float)5.0, 1);
+        StringProperty prop = item.ridProperty();
+        Assertions.assertEquals("1", prop.get());
     }
 }
