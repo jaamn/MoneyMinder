@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+<<<<<<< HEAD:src/test/java/IntegrationTest/Models/ReceiptTest.java
 class ReceiptTest {
     int rid = Integer.parseInt("1");
     int sid = Store.getIdFromName("Village Market");
@@ -22,23 +23,24 @@ class ReceiptTest {
     Receipt r = new Receipt(rid, sid, "Test1", Date.valueOf("2019-06-06"));
     Receipt r2 = new Receipt(2, 2, "Test2", Date.valueOf("2019-06-06"));
     Item i = new Item(1, 1, "TestItem", (float)5.0, 1);
+=======
+class ReceiptIT {
+>>>>>>> 936e893c8cd9f2cbd81dbc3136b1c429fd4d41a7:src/test/java/IntegrationTest/Models/ReceiptIT.java
 
     @BeforeEach
     void setUp() {
         File database = new File("database.db");
-        if(database.exists()) {
-            database.delete();
-        }
         Main.MainApp M = new Main.MainApp();
+        if(database.exists()) {
+            M.deleteTables();
+        }
         M.initDB();
     }
 
     @BeforeEach
     void tearDown() {
-        File database = new File("database.db");
-        if(database.exists()) {
-            database.delete();
-        }
+        Main.MainApp M = new Main.MainApp();
+        M.deleteTables();
     }
 
     @Test

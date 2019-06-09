@@ -1,5 +1,6 @@
 package IntegrationTest.Models;
 
+import Main.MainApp;
 import Models.*;
 import Utils.SQL.QueryFactory.InsertQueryFactory;
 import Utils.SQL.QueryFactory.SelectQueryFactory;
@@ -25,19 +26,17 @@ class ItemIT {
     @BeforeEach
     void setUp() {
         File database = new File("database.db");
-        if(database.exists()) {
-            database.delete();
-        }
         Main.MainApp M = new Main.MainApp();
+        if(database.exists()) {
+            M.deleteTables();
+        }
         M.initDB();
     }
 
     @AfterEach
-    void tearDown() throws Exception{
-        File database = new File("database.db");
-        if(database.exists()) {
-            database.delete();
-        }
+    void tearDown(){
+        Main.MainApp M = new Main.MainApp();
+        M.deleteTables();
     }
 
     //integration
@@ -79,21 +78,21 @@ class ItemIT {
         Assertions.assertNotNull(rs, "result set from db is created");
     }
 
-//    @Test
-//    void getSumPriceForCategory(){
-//        Item item = new Item(1, 1, "Cookie", (float)5.0, 1);
-//        User user = new User("Test", "test", "Test", "12345678");
-//        Category c = new Category(1, "Groceries");
-//        String str = "2019-06-06";
-//        Date date = Date.valueOf(str);
-//        Receipt receipt = new Receipt(1, 1, "Test", date);
-//        InsertQuery insertItem = InsertQueryFactory.getQuery(Tables.Items);
-//        insertItem.execute(item);
-//        InsertQuery insertReceipt = InsertQueryFactory.getQuery(Tables.Receipts);
-//        insertReceipt.execute(receipt);
-//        float priceSum = Item.getSumPriceForCategory(user, c);
-//        Assertions.assertEquals((float)5.0, priceSum);
-//    }
+    @Test
+    void getSumPriceForCategory(){
+        Item item = new Item(1, 1, "Cookie", (float)5.0, 1);
+        User user = new User("Test", "test", "Test", "12345678");
+        Category c = new Category(1, "Groceries");
+        String str = "2019-06-06";
+        Date date = Date.valueOf(str);
+        Receipt receipt = new Receipt(1, 1, "Test", date);
+        InsertQuery insertItem = InsertQueryFactory.getQuery(Tables.Items);
+        insertItem.execute(item);
+        InsertQuery insertReceipt = InsertQueryFactory.getQuery(Tables.Receipts);
+        insertReceipt.execute(receipt);
+        float priceSum = Item.getSumPriceForCategory(user, c);
+        Assertions.assertEquals((float)5.0, priceSum);
+    }
 
     @Test
     void getMinPriceForCategoryForMonth() {

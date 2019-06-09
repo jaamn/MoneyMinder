@@ -3,7 +3,9 @@ package Main;
 import Models.Category;
 import Models.Tables;
 import Utils.SQL.QueryFactory.CreateTableQueryFactory;
+import Utils.SQL.QueryFactory.DeleteTableQueryFactory;
 import Utils.SQL.QueryStatements.CreateTableQueries.*;
+import Utils.SQL.QueryStatements.DeleteTableQueries.DeleteTableQuery;
 import Utils.SwitchScene;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -42,7 +44,18 @@ public class MainApp extends Application {
         for (Tables t : Tables.values()) {
             createTableInDB(t);
         }
+    }
 
+    public void deleteTableInDB(Tables t)
+    {
+        DeleteTableQuery query = DeleteTableQueryFactory.getQuery(t);
+        query.execute();
+    }
+
+    public void deleteTables(){
+        for (Tables t: Tables.values()){
+            deleteTableInDB(t);
+        }
     }
 
     public void initDB(){
