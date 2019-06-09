@@ -13,7 +13,7 @@ import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CategoryTest {
+class CategoryIT {
 
     @BeforeEach
     void setUp() {

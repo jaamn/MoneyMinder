@@ -21,24 +21,22 @@ import java.sql.ResultSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ReceiptTest {
+class ReceiptIT {
 
     @BeforeEach
     void setUp() {
         File database = new File("database.db");
-        if(database.exists()) {
-            database.delete();
-        }
         Main.MainApp M = new Main.MainApp();
+        if(database.exists()) {
+            M.deleteTables();
+        }
         M.initDB();
     }
 
     @AfterEach
     void tearDown() {
-        File database = new File("database.db");
-        if(database.exists()) {
-            database.delete();
-        }
+        Main.MainApp M = new Main.MainApp();
+        M.deleteTables();
     }
 
 
