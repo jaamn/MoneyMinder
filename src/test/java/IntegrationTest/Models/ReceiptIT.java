@@ -29,32 +29,32 @@ class ReceiptIT {
 
     @BeforeEach
     void setUp() {
-//        File database = new File("database.db");
-//        Main.MainApp M = new Main.MainApp();
-//        if(database.exists()) {
-//            M.deleteTables();
-//        }
-//        M.initDB();
+        File database = new File("database.db");
+        Main.MainApp M = new Main.MainApp();
+        if(database.exists()) {
+            M.deleteTables();
+        }
+        M.initDB();
     }
 
     @BeforeEach
     void tearDown() {
-//        Main.MainApp M = new Main.MainApp();
-//        M.deleteTables();
+        Main.MainApp M = new Main.MainApp();
+        M.deleteTables();
     }
 
     @Test
     void getStoreName() {
-//        InsertQuery insertS = InsertQueryFactory.getQuery(Tables.Stores);
-//        insertS.execute("Village Market");
-//
-//        InsertQuery insert = InsertQueryFactory.getQuery(Tables.Users);
-//        insert.execute(u);
-//
-//        InsertQuery insertR = InsertQueryFactory.getQuery(Tables.Receipts);
-//        insertR.execute(r);
-//
-//        Assertions.assertEquals("Village Market", r.getStoreName().getValue());
+        InsertQuery insertS = InsertQueryFactory.getQuery(Tables.Stores);
+        insertS.execute("Village Market");
+
+        InsertQuery insert = InsertQueryFactory.getQuery(Tables.Users);
+        insert.execute(u);
+
+        InsertQuery insertR = InsertQueryFactory.getQuery(Tables.Receipts);
+        insertR.execute(r);
+
+        Assertions.assertEquals("Village Market", r.getStoreName().getValue());
     }
 
     @Test
