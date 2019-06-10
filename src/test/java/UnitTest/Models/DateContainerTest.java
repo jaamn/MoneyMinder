@@ -9,6 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class DateContainerTest {
 
     @Test
+    void testDateContainer() {
+        DateContainer dc = new DateContainer();
+        Assertions.assertNotNull(dc);
+    }
+
+    @Test
     void testMonth() {
         Assertions.assertEquals("06", DateContainer.Date.month());
     }
