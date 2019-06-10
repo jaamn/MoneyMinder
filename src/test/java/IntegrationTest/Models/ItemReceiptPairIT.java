@@ -24,46 +24,46 @@ class ItemReceiptPairIT {
 
     @BeforeEach
     void setUp() {
-//        File database = new File("database.db");
-//        Main.MainApp M = new Main.MainApp();
-//        if(database.exists()) {
-//            M.deleteTables();
-//        }
-//        M.initDB();
+        File database = new File("database.db");
+        Main.MainApp M = new Main.MainApp();
+        if(database.exists()) {
+            M.deleteTables();
+        }
+        M.initDB();
     }
 
     @AfterEach
     void tearDown(){
-//        Main.MainApp M = new Main.MainApp();
-//        M.deleteTables();
+        Main.MainApp M = new Main.MainApp();
+        M.deleteTables();
     }
 
     @Test
     void getItem() {
-//        Assertions.assertEquals("IceCream", irp.getItem().getName());
-//        Assertions.assertEquals(1, irp.getItem().getCid());
-//        Assertions.assertEquals((float)5.0, irp.getItem().getPrice());
-//        Assertions.assertEquals(1, irp.getItem().getQuantity());
-//        Assertions.assertEquals(1, irp.getItem().getRid());
+        Assertions.assertEquals("IceCream", irp.getItem().getName());
+        Assertions.assertEquals(1, irp.getItem().getCid());
+        Assertions.assertEquals((float)5.0, irp.getItem().getPrice());
+        Assertions.assertEquals(1, irp.getItem().getQuantity());
+        Assertions.assertEquals(1, irp.getItem().getRid());
     }
 
     @Test
     void getReceipt() {
-//        InsertQuery insertS = InsertQueryFactory.getQuery(Tables.Stores);
-//        insertS.execute("Village Market");
-//
-//        InsertQuery insert = InsertQueryFactory.getQuery(Tables.Users);
-//        insert.execute(u);
-//
-//        InsertQuery insertR = InsertQueryFactory.getQuery(Tables.Receipts);
-//        insertR.execute(r);
-//
-//        Assertions.assertEquals("Village Market", irp.getReceipt().getStoreName().getValue());
-//        Assertions.assertEquals("2019-06-06", irp.getReceipt().getDateProp().getValue());
-//        Assertions.assertEquals(
-//                "\t" + rid + ",\n"
-//                + "\t" + sid + ",\n"
-//                + "\t'" +"Test1" + "',\n"
-//                + "\t'" + Date.valueOf("2019-06-06") + "'", irp.getReceipt().getInsertFields());
+        InsertQuery insertS = InsertQueryFactory.getQuery(Tables.Stores);
+        insertS.execute("Village Market");
+
+        InsertQuery insert = InsertQueryFactory.getQuery(Tables.Users);
+        insert.execute(u);
+
+        InsertQuery insertR = InsertQueryFactory.getQuery(Tables.Receipts);
+        insertR.execute(r);
+
+        Assertions.assertEquals("Village Market", irp.getReceipt().getStoreName().getValue());
+        Assertions.assertEquals("2019-06-06", irp.getReceipt().getDateProp().getValue());
+        Assertions.assertEquals(
+                "\t" + rid + ",\n"
+                + "\t" + sid + ",\n"
+                + "\t'" +"Test1" + "',\n"
+                + "\t'" + Date.valueOf("2019-06-06") + "'", irp.getReceipt().getInsertFields());
     }
 }
