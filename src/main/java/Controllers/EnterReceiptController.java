@@ -73,6 +73,7 @@ public class EnterReceiptController extends Returnable{
 
         submitButton.setOnAction(event -> {
             handleSubmit();
+            ((Node) (event.getSource())).getScene().getWindow().hide(); /* better navigation */
         });
 
         addItemButton.setOnAction(event -> {
