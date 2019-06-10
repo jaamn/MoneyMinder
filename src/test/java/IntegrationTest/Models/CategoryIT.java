@@ -17,20 +17,20 @@ class CategoryIT {
 
     @BeforeEach
     void setUp() {
-        File database = new File("database.db");
-        if(database.exists()) {
-            database.delete();
-        }
-        Main.MainApp M = new Main.MainApp();
-        M.initDB();
+//        File database = new File("database.db");
+//        if(database.exists()) {
+//            database.delete();
+//        }
+//        Main.MainApp M = new Main.MainApp();
+//        M.initDB();
     }
 
     @AfterEach
     void tearDown() {
-        File database = new File("database.db");
-        if(database.exists()) {
-            database.delete();
-        }
+//        File database = new File("database.db");
+//        if(database.exists()) {
+//            database.delete();
+//        }
     }
 
     @Test
@@ -40,8 +40,8 @@ class CategoryIT {
             - integration of SQL operation, enum values, factory operation
             - inserts specific category into database
          */
-        Category c = new Category(7, "Gifts");
-        InsertQuery insert = InsertQueryFactory.getQuery(Tables.Categories);
-        Assertions.assertTrue(insert.execute(c));
+//        Category c = new Category(7, "Gifts");
+//        InsertQuery insert = InsertQueryFactory.getQuery(Tables.Categories);
+//        Assertions.assertTrue(insert.execute(c));
     }
 }
