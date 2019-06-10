@@ -59,46 +59,46 @@ class ReceiptIT {
 
     @Test
     void insertIntoDB() {
-//        InsertQuery insert = InsertQueryFactory.getQuery(Tables.Receipts);
-//        Assertions.assertTrue(insert.execute(r2));
+        InsertQuery insert = InsertQueryFactory.getQuery(Tables.Receipts);
+        Assertions.assertTrue(insert.execute(r2));
     }
 
     @Test
     void getSpendingForMonth() {
-//        InsertQuery insertS = InsertQueryFactory.getQuery(Tables.Stores);
-//        insertS.execute("Village Market");
-//
-//        InsertQuery insert = InsertQueryFactory.getQuery(Tables.Users);
-//        insert.execute(u);
-//
-//        InsertQuery insertR = InsertQueryFactory.getQuery(Tables.Receipts);
-//        insertR.execute(r);
-//
-//        InsertQuery insertItem = InsertQueryFactory.getQuery(Tables.Items);
-//        insertItem.execute(i);
-//
-//        Assertions.assertEquals((float)5.0, r.getSpendingForMonth(u,"06", "2019"));
+        InsertQuery insertS = InsertQueryFactory.getQuery(Tables.Stores);
+        insertS.execute("Village Market");
+
+        InsertQuery insert = InsertQueryFactory.getQuery(Tables.Users);
+        insert.execute(u);
+
+        InsertQuery insertR = InsertQueryFactory.getQuery(Tables.Receipts);
+        insertR.execute(r);
+
+        InsertQuery insertItem = InsertQueryFactory.getQuery(Tables.Items);
+        insertItem.execute(i);
+
+        Assertions.assertEquals((float)5.0, r.getSpendingForMonth(u,"06", "2019"));
     }
 
     @Test
     void getSpendingPerCategoryForMonth() {
-//        InsertQuery insertS = InsertQueryFactory.getQuery(Tables.Stores);
-//        insertS.execute("Village Market");
-//
-//        InsertQuery insert = InsertQueryFactory.getQuery(Tables.Users);
-//        insert.execute(u);
-//
-//        InsertQuery insertR = InsertQueryFactory.getQuery(Tables.Receipts);
-//        insertR.execute(r);
-//
-//        InsertQuery insertItem = InsertQueryFactory.getQuery(Tables.Items);
-//        insertItem.execute(i);
-//        insertItem.execute(i2);
-//        insertItem.execute(i3);
-//
-//        Assertions.assertEquals((float)14,
-//                r.getSpendingPerCategoryForMonth(u, new Category(1, "Groceries"),"06", "2019"));
-//        Assertions.assertEquals((float)0,
-//                r.getSpendingPerCategoryForMonth(u, new Category(1, "Groceries"),"07", "2019"));
+        InsertQuery insertS = InsertQueryFactory.getQuery(Tables.Stores);
+        insertS.execute("Village Market");
+
+        InsertQuery insert = InsertQueryFactory.getQuery(Tables.Users);
+        insert.execute(u);
+
+        InsertQuery insertR = InsertQueryFactory.getQuery(Tables.Receipts);
+        insertR.execute(r);
+
+        InsertQuery insertItem = InsertQueryFactory.getQuery(Tables.Items);
+        insertItem.execute(i);
+        insertItem.execute(i2);
+        insertItem.execute(i3);
+
+        Assertions.assertEquals((float)14,
+                r.getSpendingPerCategoryForMonth(u, new Category(1, "Groceries"),"06", "2019"));
+        Assertions.assertEquals((float)0,
+                r.getSpendingPerCategoryForMonth(u, new Category(1, "Groceries"),"07", "2019"));
     }
 }
