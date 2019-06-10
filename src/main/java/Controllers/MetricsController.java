@@ -72,7 +72,7 @@ public class MetricsController extends Returnable{
                 msList.add(max);
             }
         }
-        totalSpending.setText("$" + totalMoney);
+        totalSpending.setText("$" + String.format("%10.2f", totalMoney));
 
         LeastCategoryName.setCellValueFactory(cellData -> cellData.getValue().getCategoryName());
         MostCategoryName.setCellValueFactory(cellData -> cellData.getValue().getCategoryName());

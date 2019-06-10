@@ -53,7 +53,9 @@ public class PieChartController extends Returnable{
         for (Category c : Category.getCategories())
         {
             float total = Item.getSumPriceForCategory(user, c);
-            piechartdata.add(new PieChart.Data(c.toString(), total));
+            if(total != 0) {
+                piechartdata.add(new PieChart.Data(c.toString(), total));
+            }
         }
     }
 }
